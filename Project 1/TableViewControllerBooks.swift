@@ -27,7 +27,7 @@ class TableViewControllerBooks: UITableViewController {
     
     //Fill cell text based on the data array
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "booksCell", for: indexPath)
         cell.textLabel?.text = books[indexPath.section][indexPath.row]
         return cell
     }
