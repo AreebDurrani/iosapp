@@ -8,22 +8,27 @@
 import UIKit
 
 class ViewControllerRegister: UIViewController {
-
+    var username = ""
+    var password = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+        let dest = segue.destination as! ViewControllerLogin
         // Pass the selected object to the new view controller.
+        username = usernameTextField.text!
+        password = passwordTextField.text!
+        dest.username = username
+        dest.password = password
     }
-    */
+
 
 }

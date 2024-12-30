@@ -28,7 +28,10 @@ class TableViewControllerBooks: UITableViewController {
     //Fill cell text based on the data array
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "booksCell", for: indexPath)
-        cell.textLabel?.text = books[indexPath.section][indexPath.row]
+        var contentConfiguration = cell.defaultContentConfiguration()
+        contentConfiguration.text = books[indexPath.section][indexPath.row]
+        contentConfiguration.image = UIImage(named: "Tux")
+        cell.contentConfiguration = contentConfiguration
         return cell
     }
 }

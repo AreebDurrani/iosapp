@@ -29,7 +29,10 @@ class TableViewControllerMusic: UITableViewController {
     //Fill cell text based on the data array
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell", for: indexPath)
-        cell.textLabel?.text = songs[indexPath.section][indexPath.row]
+        var contentConfiguration = cell.defaultContentConfiguration()
+        contentConfiguration.text = songs[indexPath.section][indexPath.row]
+        contentConfiguration.image = UIImage(named: "Tux")
+        cell.contentConfiguration = contentConfiguration
         return cell
     }
 }

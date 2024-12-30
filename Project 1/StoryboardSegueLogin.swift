@@ -8,5 +8,9 @@
 import UIKit
 
 class StoryboardSegueLogin: UIStoryboardSegue {
-
+override func perform() {
+        let sourceViewController = self.source
+        let destinationViewController = self.destination
+        sourceViewController.present(destinationViewController, animated: true, completion: nil)
+    }
 }

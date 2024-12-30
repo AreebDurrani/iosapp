@@ -1,89 +1,66 @@
-//
-//  TableViewControllerNotes.swift
-//  Project 1
-//
-//  Created by Areeb Durrani on 12/28/24.
-//
-
 import UIKit
 
 class TableViewControllerNotes: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        self.navigationItem.rightBarButtonItem = addNoteButton
     }
 
-    // MARK: - Table view data source
+    var notes: [[String]] = [[]]
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return notes.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return notes[section].count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "notesCell", for: indexPath)
+        var contentConfiguration = cell.defaultContentConfiguration()
+        contentConfiguration.text = notes[indexPath.section][indexPath.row]
+        contentConfiguration.image = UIImage(named: "Tux")
+        cell.contentConfiguration = contentConfiguration
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
-    */
 
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            notes[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
+    @objc func addNote() {
+        let alert = UIAlertController(title: "New Note", message: "Enter a note", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Type your note here"
+        }
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
+            if let noteText = alert.textFields?.first?.text, !noteText.isEmpty {
+                self.notes[0].append(noteText)
+                let indexPath = IndexPath(row: self.notes[0].count - 1, section: 0)
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let movedNote = notes[fromIndexPath.section].remove(at: fromIndexPath.row)
+        notes[to.section].insert(movedNote, at: to.row)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
+    
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
