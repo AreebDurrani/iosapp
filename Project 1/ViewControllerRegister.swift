@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  ViewControllerRegister.swift
 //  Project 1
 //
-//  Created by Areeb Durrani on 12/28/24.
+//  Created by Areeb Durrani on 12/30/24.
 //
 
 import UIKit
 
-class ViewController: UITabBarController {
+class ViewControllerRegister: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
