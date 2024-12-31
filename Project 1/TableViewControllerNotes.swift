@@ -22,7 +22,7 @@ class TableViewControllerNotes: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notesCell", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = notes[indexPath.section][indexPath.row]
-        contentConfiguration.image = UIImage(named: "Tux")
+        contentConfiguration.image = UIImage(named: "note")
         cell.contentConfiguration = contentConfiguration
         return cell
     }

@@ -30,7 +30,7 @@ class TableViewControllerBooks: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "booksCell", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = books[indexPath.section][indexPath.row]
-        contentConfiguration.image = UIImage(named: "Tux")
+        contentConfiguration.image = UIImage(named: "book")
         cell.contentConfiguration = contentConfiguration
         return cell
     }
