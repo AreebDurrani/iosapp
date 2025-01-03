@@ -1,37 +1,74 @@
-//
-//  TableViewControllerBooks.swift
-//  Project 1
-//
-//  Created by Areeb Durrani on 12/28/24.
-//
-
 import UIKit
+import PDFKit
 
 class TableViewControllerBooks: UITableViewController {
+    
+    let books: [[(title: String, fileName: String)]] = [[
+        ("Armageddon 2419 A.D.", "armageddon")
+    ]]
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // Data Array for Table View
-    let books : [[String]] = [["Book 1", "Book 2", "Book 3", "Book 4",  "Book 5"]]
-    
-    //Create sections based on the length of the data array
     override func numberOfSections(in tableView: UITableView) -> Int {
         return books.count
     }
     
-    //Create row based on the length of the section subarray
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books[section].count
     }
     
-    //Fill cell text based on the data array
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "booksCell", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = books[indexPath.section][indexPath.row]
+        let book = books[indexPath.section][indexPath.row]
+        contentConfiguration.text = book.title
         contentConfiguration.image = UIImage(named: "book")
         cell.contentConfiguration = contentConfiguration
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let selectedBook = books[indexPath.section][indexPath.row]
+        let pdfViewController = PDFViewController()
+        pdfViewController.pdfFileName = selectedBook.fileName
+
+        navigationController?.pushViewController(pdfViewController, animated: true)
+    }
 }
+
+class PDFViewController: UIViewController {
+
+    var pdfFileName: String?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .white
+
+        let pdfView = PDFView(frame: view.bounds)
+        pdfView.autoScales = true
+        view.addSubview(pdfView)
+
+        if let pdfFileName = pdfFileName,
+           let pdfDataAsset = NSDataAsset(name: pdfFileName) {
+            if let pdfDocument = PDFDocument(data: pdfDataAsset.data) {
+                pdfView.document = pdfDocument
+            } else {
+                showAlert(message: "Failed to load PDF document.")
+            }
+        } else {
+            showAlert(message: "PDF file not found.")
+        }
+    }
+
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+}
+
