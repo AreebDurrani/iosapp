@@ -320,6 +320,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Register"/>
                                 <connections>
+                                    <action selector="registerPressed:" destination="lGu-19-NDd" eventType="touchUpInside" id="AXf-D2-uoh"/>
                                     <segue destination="5JW-18-0lh" kind="show" id="92Z-Mx-vyE"/>
                                 </connections>
                             </button>
