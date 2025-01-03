@@ -53,14 +53,29 @@ class TableViewControllerNotes: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
+
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedNote = notes[fromIndexPath.section].remove(at: fromIndexPath.row)
         notes[to.section].insert(movedNote, at: to.row)
     }
-    
+
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.text = self.notes[indexPath.section][indexPath.row]
+        }
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+            if let updatedText = alert.textFields?.first?.text, !updatedText.isEmpty {
+                self.notes[indexPath.section][indexPath.row] = updatedText
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
