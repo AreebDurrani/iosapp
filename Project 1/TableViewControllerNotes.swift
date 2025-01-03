@@ -6,6 +6,7 @@ class TableViewControllerNotes: UITableViewController {
         super.viewDidLoad()
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         self.navigationItem.rightBarButtonItem = addNoteButton
+        loadNotes()
     }
 
     var notes: [[String]] = [[]]
@@ -34,6 +35,7 @@ class TableViewControllerNotes: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             notes[indexPath.section].remove(at: indexPath.row)
+            saveNotes()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -46,6 +48,7 @@ class TableViewControllerNotes: UITableViewController {
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
             if let noteText = alert.textFields?.first?.text, !noteText.isEmpty {
                 self.notes[0].append(noteText)
+                self.saveNotes()
                 let indexPath = IndexPath(row: self.notes[0].count - 1, section: 0)
                 self.tableView.insertRows(at: [indexPath], with: .automatic)
             }
@@ -57,6 +60,7 @@ class TableViewControllerNotes: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedNote = notes[fromIndexPath.section].remove(at: fromIndexPath.row)
         notes[to.section].insert(movedNote, at: to.row)
+        saveNotes()
     }
 
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -71,11 +75,27 @@ class TableViewControllerNotes: UITableViewController {
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
             if let updatedText = alert.textFields?.first?.text, !updatedText.isEmpty {
                 self.notes[indexPath.section][indexPath.row] = updatedText
+                self.saveNotes()
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    func saveNotes() {
+        if let data = try? JSONEncoder().encode(notes) {
+            UserDefaults.standard.set(data, forKey: "notes")
+        }
+    }
+
+    func loadNotes() {
+        if let data = UserDefaults.standard.data(forKey: "notes"),
+           let savedNotes = try? JSONDecoder().decode([[String]].self, from: data) {
+            notes = savedNotes
+        } else {
+            notes = [[]]
+        }
     }
 }
 
