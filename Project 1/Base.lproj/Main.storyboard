@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,7 +34,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="uJo-mV-xjj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="musicCell" id="2LI-Tm-z75">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -44,6 +46,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -65,7 +69,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="cl6-oR-jLX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="booksCell" id="9Hn-oH-NFK">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -74,6 +81,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -92,7 +101,9 @@
         <scene sceneID="Rwt-ID-ypb">
             <objects>
                 <navigationController id="969-YO-M7C" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Music" id="GWB-Fj-YFc"/>
+                    <tabBarItem key="tabBarItem" title="Music" id="GWB-Fj-YFc">
+                        <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JTp-Gn-xTc">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -112,7 +123,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="kiF-Gk-0iV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notesCell" id="7Rb-ca-UJu">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -121,6 +135,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -139,10 +155,16 @@
         <scene sceneID="g4Z-bz-eYf">
             <objects>
                 <navigationController id="ad9-su-rCB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Books" id="R7Z-MX-jii"/>
+                    <tabBarItem key="tabBarItem" title="Books" id="R7Z-MX-jii">
+                        <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DI1-kL-3uW">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="dY6-ux-Jnj" kind="relationship" relationship="rootViewController" id="Par-hK-wTs"/>
@@ -156,7 +178,9 @@
         <scene sceneID="ENI-oJ-PqM">
             <objects>
                 <navigationController id="e63-mZ-hHa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notes" id="lhx-69-fKh"/>
+                    <tabBarItem key="tabBarItem" title="Notes" id="lhx-69-fKh">
+                        <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="75x-HI-eFo">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -223,7 +247,8 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ucE-xo-GIc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="6zs-NW-u4g"/>
                     <connections>
@@ -281,7 +306,8 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ox0-KA-KM4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.38150055510000003" green="0.36583919329999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="R8f-Ef-m08"/>
                     <connections>
@@ -294,9 +320,4 @@
             <point key="canvasLocation" x="-3100" y="538"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
