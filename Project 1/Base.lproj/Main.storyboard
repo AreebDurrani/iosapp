@@ -233,7 +233,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In"/>
                                 <connections>
-                                    <action selector="loginPressed:" destination="5JW-18-0lh" eventType="touchUpInside" id="Ey4-4N-pIh"/>
+                                    <action selector="loginPressed:" destination="5JW-18-0lh" eventType="touchUpInside" id="AKO-lj-ola"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hk-t6-0IR">
@@ -271,8 +271,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="6zs-NW-u4g"/>
                     <connections>
-                        <outlet property="passwordTextField" destination="VH2-Kx-2K7" id="Pcb-gO-a1C"/>
-                        <outlet property="usernameTextField" destination="PYE-sz-Dpu" id="7KA-xC-Uim"/>
+                        <outlet property="passwordTextField" destination="VH2-Kx-2K7" id="G3J-AS-7Ox"/>
+                        <outlet property="usernameTextField" destination="PYE-sz-Dpu" id="f52-ED-8Y7"/>
                         <segue destination="Bks-rX-sjg" kind="custom" identifier="loginSegue" customClass="StoryboardSegueLogin" customModule="Project_1" customModuleProvider="target" id="SDw-Xf-Csc"/>
                     </connections>
                 </viewController>

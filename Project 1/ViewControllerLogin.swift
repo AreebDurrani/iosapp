@@ -21,9 +21,24 @@ class ViewControllerLogin: UIViewController {
         
         if usernameInput == savedUsername && passwordInput == savedPassword {
             print("Login successful")
-            performSegue(withIdentifier: "loginSegue", sender: self)
+            
+            let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+            feedbackGenerator.impactOccurred()
+            
+            
+            let alertController = UIAlertController(title: "Login Successful",
+                                                    message: "Welcome back, \(usernameInput)!",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+             
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
+            }
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         } else {
             print("Invalid username or password")
         }
     }
 }
+
