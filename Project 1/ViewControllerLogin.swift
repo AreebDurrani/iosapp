@@ -6,6 +6,18 @@ class ViewControllerLogin: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        let defaults = UserDefaults.standard
+        if defaults.string(forKey: "registeredUsername") == nil || defaults.string(forKey: "registeredPassword") == nil {
+           
+            let alertController = UIAlertController(title: "No Account Found",
+                                                    message: "Please tap 'Register' to create a new account.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func loginPressed(_ sender: Any) {

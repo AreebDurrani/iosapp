@@ -1,28 +1,33 @@
 import UIKit
+import CoreData
 
 class TableViewControllerNotes: UITableViewController {
 
+    var notes: [Note] = [] // CoreData will manage this array
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         self.navigationItem.rightBarButtonItem = addNoteButton
-        loadNotes()
+        
+        fetchNotes()
     }
 
-    var notes: [[String]] = [[]]
+    // MARK: - Table View Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return notes.count
+        return 1 // CoreData doesn't require multiple sections for now
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes[section].count
+        return notes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notesCell", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = notes[indexPath.section][indexPath.row]
+        contentConfiguration.text = notes[indexPath.row].content
         contentConfiguration.image = UIImage(named: "note")
         cell.contentConfiguration = contentConfiguration
         return cell
@@ -34,11 +39,11 @@ class TableViewControllerNotes: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            notes[indexPath.section].remove(at: indexPath.row)
-            saveNotes()
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            deleteNote(at: indexPath)
         }
     }
+
+    // MARK: - Adding Notes
 
     @objc func addNote() {
         let alert = UIAlertController(title: "New Note", message: "Enter a note", preferredStyle: .alert)
@@ -47,54 +52,86 @@ class TableViewControllerNotes: UITableViewController {
         }
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
             if let noteText = alert.textFields?.first?.text, !noteText.isEmpty {
-                self.notes[0].append(noteText)
-                self.saveNotes()
-                let indexPath = IndexPath(row: self.notes[0].count - 1, section: 0)
-                self.tableView.insertRows(at: [indexPath], with: .automatic)
+                self.saveNote(content: noteText)
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedNote = notes[fromIndexPath.section].remove(at: fromIndexPath.row)
-        notes[to.section].insert(movedNote, at: to.row)
-        saveNotes()
-    }
-
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+    // MARK: - Editing Notes
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = notes[indexPath.row]
         let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.text = self.notes[indexPath.section][indexPath.row]
+            textField.text = note.content
         }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
             if let updatedText = alert.textFields?.first?.text, !updatedText.isEmpty {
-                self.notes[indexPath.section][indexPath.row] = updatedText
-                self.saveNotes()
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                self.updateNote(note: note, with: updatedText)
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 
-    func saveNotes() {
-        if let data = try? JSONEncoder().encode(notes) {
-            UserDefaults.standard.set(data, forKey: "notes")
+    // MARK: - CoreData Operations
+
+    func fetchNotes() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        do {
+            notes = try context.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch {
+            print("Error fetching notes: \(error)")
         }
     }
 
-    func loadNotes() {
-        if let data = UserDefaults.standard.data(forKey: "notes"),
-           let savedNotes = try? JSONDecoder().decode([[String]].self, from: data) {
-            notes = savedNotes
-        } else {
-            notes = [[]]
+    func saveNote(content: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newNote = Note(context: context)
+        newNote.content = content
+        
+        do {
+            try context.save()
+            notes.append(newNote)
+            tableView.reloadData()
+        } catch {
+            print("Error saving note: \(error)")
+        }
+    }
+
+    func updateNote(note: Note, with content: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        note.content = content
+        do {
+            try context.save()
+            tableView.reloadData()
+        } catch {
+            print("Error updating note: \(error)")
+        }
+    }
+
+    func deleteNote(at indexPath: IndexPath) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let noteToDelete = notes[indexPath.row]
+        context.delete(noteToDelete)
+        do {
+            try context.save()
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } catch {
+            print("Error deleting note: \(error)")
         }
     }
 }

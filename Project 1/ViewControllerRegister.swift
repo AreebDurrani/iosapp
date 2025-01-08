@@ -15,7 +15,7 @@ class ViewControllerRegister: UIViewController {
             return
         }
         
-        // Save to UserDefaults
+      
         let defaults = UserDefaults.standard
         defaults.set(username, forKey: "registeredUsername")
         defaults.set(password, forKey: "registeredPassword")

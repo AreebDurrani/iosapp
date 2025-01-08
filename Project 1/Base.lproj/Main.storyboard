@@ -101,7 +101,7 @@
         <scene sceneID="Rwt-ID-ypb">
             <objects>
                 <navigationController id="969-YO-M7C" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Music" id="GWB-Fj-YFc">
+                    <tabBarItem key="tabBarItem" title="Music" selectedImage="music" id="GWB-Fj-YFc">
                         <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JTp-Gn-xTc">
@@ -155,7 +155,7 @@
         <scene sceneID="g4Z-bz-eYf">
             <objects>
                 <navigationController id="ad9-su-rCB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Books" id="R7Z-MX-jii">
+                    <tabBarItem key="tabBarItem" title="Books" selectedImage="book" id="R7Z-MX-jii">
                         <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DI1-kL-3uW">
@@ -178,7 +178,7 @@
         <scene sceneID="ENI-oJ-PqM">
             <objects>
                 <navigationController id="e63-mZ-hHa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notes" id="lhx-69-fKh">
+                    <tabBarItem key="tabBarItem" title="Notes" selectedImage="note" id="lhx-69-fKh">
                         <color key="badgeColor" red="0.99278610940000001" green="0.99215406179999999" blue="0.81524944310000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="75x-HI-eFo">
