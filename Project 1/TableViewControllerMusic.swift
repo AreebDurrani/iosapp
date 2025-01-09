@@ -12,7 +12,7 @@ class TableViewControllerMusic: UITableViewController {
     // Nested Array for Songs and Audio File Names
     let songsAndAudioFiles: [[(title: String, fileName: String)]] = [
         [
-            ("Moonlight Sonata", "moonlight_sonata")
+            ("Moonlight Sonata", "moonlight_sonata"), ("testSong1", "moonlight_sonata"), ("testSong2", "moonlight_sonata"), ("testsong3", "moonlight_sonata"), ("testsong4", "moonlight_sonata")
         ]
     ]
 

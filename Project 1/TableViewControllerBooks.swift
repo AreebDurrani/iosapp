@@ -4,7 +4,7 @@ import PDFKit
 class TableViewControllerBooks: UITableViewController {
     
     let books: [[(title: String, fileName: String)]] = [[
-        ("Armageddon 2419 A.D.", "armageddon")
+        ("Armageddon 2419 A.D.", "armageddon"), ("testBook2", "armageddon"), ("testBook3", "armageddon"), ("testBook4", "armageddon"), ("testBook5", "armageddon"), ("testBook6", "armageddon"), ("testBook7", "armageddon"), ("testBook8", "armageddon"), ("testBook9", "armageddon"), ("testBook10", "armageddon"), ("testBook11", "armageddon")
     ]]
 
     override func viewDidLoad() {
