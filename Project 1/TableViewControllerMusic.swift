@@ -112,4 +112,10 @@ class TableViewControllerMusic: UITableViewController {
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousRow].fileName
         playAudio(fileName: audioFileName)
     }
+    
+    @IBAction func logoutPresed(_ sender: Any) {
+        let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewControllerLogin")
+        self.navigationController?.setViewControllers([vc], animated:true)
+    }
+    
 }

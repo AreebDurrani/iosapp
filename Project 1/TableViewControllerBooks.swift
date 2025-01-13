@@ -3,6 +3,7 @@ import PDFKit
 
 class TableViewControllerBooks: UITableViewController {
     
+    
     let books: [[(title: String, fileName: String)]] = [[
         ("Armageddon 2419 A.D.", "armageddon"), ("testBook2", "armageddon"), ("testBook3", "armageddon"), ("testBook4", "armageddon"), ("testBook5", "armageddon"), ("testBook6", "armageddon"), ("testBook7", "armageddon"), ("testBook8", "armageddon"), ("testBook9", "armageddon"), ("testBook10", "armageddon"), ("testBook11", "armageddon")
     ]]
@@ -38,7 +39,14 @@ class TableViewControllerBooks: UITableViewController {
 
         navigationController?.pushViewController(pdfViewController, animated: true)
     }
+    
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewControllerLogin")
+        self.navigationController?.setViewControllers([vc], animated:true)
+    }
 }
+
 
 class PDFViewController: UIViewController {
 

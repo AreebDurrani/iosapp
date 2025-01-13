@@ -9,7 +9,7 @@ class TableViewControllerNotes: UITableViewController {
         super.viewDidLoad()
         
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
-        self.navigationItem.rightBarButtonItem = addNoteButton
+        self.navigationItem.leftBarButtonItem = addNoteButton
         
         fetchNotes()
     }
@@ -133,6 +133,11 @@ class TableViewControllerNotes: UITableViewController {
         } catch {
             print("Error deleting note: \(error)")
         }
+    }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewControllerLogin")
+        self.navigationController?.setViewControllers([vc], animated:true)
     }
 }
 

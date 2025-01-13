@@ -43,7 +43,9 @@ class ViewControllerLogin: UIViewController {
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
              
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
+                let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TabBarController")
+                self.navigationController?.setViewControllers([vc], animated:true)
+                //self.performSegue(withIdentifier: "loginSegue", sender: self)
             }
             alertController.addAction(okAction)
             
@@ -53,4 +55,5 @@ class ViewControllerLogin: UIViewController {
         }
     }
 }
+
 

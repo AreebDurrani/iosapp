@@ -21,5 +21,7 @@ class ViewControllerRegister: UIViewController {
         defaults.set(password, forKey: "registeredPassword")
         
         print("User registered: \(username)")
+        let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewControllerLogin") as? ViewControllerLogin
+        self.navigationController?.popViewController(animated: true)
     }
 }

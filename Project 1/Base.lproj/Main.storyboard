@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5JW-18-0lh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vue-Zq-NYf">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -10,7 +10,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="cYH-f6-EFz">
             <objects>
-                <tabBarController id="Bks-rX-sjg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="Bks-rX-sjg" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1Qn-jO-cjp"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sYV-HA-Jx3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -25,7 +25,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eam-gt-HkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1211" y="427"/>
+            <point key="canvasLocation" x="-284.73282442748092" y="426.76056338028172"/>
         </scene>
         <!--Music-->
         <scene sceneID="DCi-tU-daD">
@@ -56,7 +56,19 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Music" selectedImage="music" id="7xZ-U0-fpQ"/>
-                    <navigationItem key="navigationItem" id="PUI-gT-0J3"/>
+                    <navigationItem key="navigationItem" id="PUI-gT-0J3">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="oIa-56-bJq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cmO-WD-D5S">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutPresed:" destination="iLX-kS-Y5Y" eventType="touchUpInside" id="4vF-iY-mM9"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBe-qz-THM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,7 +103,19 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Books" selectedImage="book" id="Txu-N2-GB4"/>
-                    <navigationItem key="navigationItem" id="KBW-vo-fSP"/>
+                    <navigationItem key="navigationItem" id="KBW-vo-fSP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ehk-f8-FqV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5sG-pn-Jaa">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="dY6-ux-Jnj" eventType="touchUpInside" id="ira-Sb-YdI"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvI-yX-Qgy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,7 +169,19 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Notes" selectedImage="note" id="6hr-AT-lOq"/>
-                    <navigationItem key="navigationItem" id="kaE-d3-fjy"/>
+                    <navigationItem key="navigationItem" id="kaE-d3-fjy">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ypd-i6-hhO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="jRY-iT-jx5">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="G7l-rl-mv8" eventType="touchUpInside" id="3UK-AC-PNR"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJP-XV-xKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -196,9 +232,9 @@
         <!--View Controller Login-->
         <scene sceneID="vXM-Px-1Ag">
             <objects>
-                <viewController id="5JW-18-0lh" customClass="ViewControllerLogin" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerLogin" id="5JW-18-0lh" customClass="ViewControllerLogin" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FUR-Bd-2ds">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShP-UC-aGm">
@@ -278,14 +314,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osL-sb-gXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3973.2824427480914" y="452.81690140845075"/>
+            <point key="canvasLocation" x="-3046.5648854961833" y="452.81690140845075"/>
         </scene>
         <!--View Controller Register-->
         <scene sceneID="hYp-Kb-SB2">
             <objects>
                 <viewController id="lGu-19-NDd" customClass="ViewControllerRegister" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x6n-c5-II3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxT-B2-Ax5">
@@ -321,7 +357,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Register"/>
                                 <connections>
                                     <action selector="registerPressed:" destination="lGu-19-NDd" eventType="touchUpInside" id="AXf-D2-uoh"/>
-                                    <segue destination="5JW-18-0lh" kind="show" id="92Z-Mx-vyE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -337,12 +372,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LbA-7P-vmv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3100" y="538"/>
+            <point key="canvasLocation" x="-2173.2824427480914" y="537.32394366197184"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FmX-lu-Fta">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vue-Zq-NYf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jZ7-J7-124"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Wb-ua-Kqr">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5JW-18-0lh" kind="relationship" relationship="rootViewController" id="SHR-2e-dv6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BGe-Q6-8Mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3973.2824427480914" y="452.81690140845075"/>
         </scene>
     </scenes>
     <resources>
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
         <image name="music" width="90.178749084472656" height="90.178749084472656"/>
         <image name="note" width="81.713752746582031" height="81.910629272460938"/>
+        <image name="plus" width="128" height="128"/>
     </resources>
 </document>
