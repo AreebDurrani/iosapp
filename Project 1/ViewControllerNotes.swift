@@ -1,13 +1,23 @@
+//
+//  ViewControllerNotes.swift
+//  Project 1
+//
+//  Created by Kenneth Yang on 1/13/25.
+//
+
 import UIKit
 import CoreData
 
-class TableViewControllerNotes: UITableViewController {
+class ViewControllerNotes: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var notes: [Note] = [] // CoreData will manage this array
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         self.navigationItem.leftBarButtonItem = addNoteButton
         fetchNotes()
@@ -15,15 +25,15 @@ class TableViewControllerNotes: UITableViewController {
 
     // MARK: - Table View Data Source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1 // CoreData doesn't require multiple sections for now
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notesCell", for: indexPath)
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = notes[indexPath.row].content
@@ -32,11 +42,11 @@ class TableViewControllerNotes: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteNote(at: indexPath)
         }
@@ -60,7 +70,7 @@ class TableViewControllerNotes: UITableViewController {
 
     // MARK: - Editing Notes
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
         let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -134,9 +144,9 @@ class TableViewControllerNotes: UITableViewController {
         }
     }
     
-    @IBAction func logoutPressed(_ sender: Any) {
+    
+    @IBAction func logOutPressed(_ sender: Any) {
         let vc = UIStoryboard.init(name:"Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewControllerLogin")
         self.navigationController?.setViewControllers([vc], animated:true)
     }
 }
-
