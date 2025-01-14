@@ -1,16 +1,17 @@
 import UIKit
 import AVFoundation
 
-class TableViewControllerMusic: UITableViewController {
+class CollectionViewControllerMusic: UICollectionViewController {
     
     var audioPlayer: AVAudioPlayer?
-    var currentTrackIndex: (section: Int, row: Int)?
-    
+    var currentTrackIndex: (section: Int, item: Int)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToolbarActions()
+        configureCollectionViewLayout()
     }
-    
+
     let songsAndAudioFiles: [[(title: String, fileName: String)]] = [
         [
             ("Moonlight Sonata", "moonlight_sonata"),
@@ -21,28 +22,36 @@ class TableViewControllerMusic: UITableViewController {
         ]
     ]
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    private func configureCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.bounds.width, height: 50)
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 0
+        collectionView.collectionViewLayout = layout
+    }
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return songsAndAudioFiles.count
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return songsAndAudioFiles[section].count
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell", for: indexPath)
-        var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = songsAndAudioFiles[indexPath.section][indexPath.row].title
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicCell", for: indexPath)
+        var contentConfiguration = UIListContentConfiguration.cell()
+        contentConfiguration.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
         contentConfiguration.image = UIImage(named: "music")
         cell.contentConfiguration = contentConfiguration
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentTrackIndex = (section: indexPath.section, row: indexPath.row)
-        let audioFileName = songsAndAudioFiles[indexPath.section][indexPath.row].fileName
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        currentTrackIndex = (section: indexPath.section, item: indexPath.item)
+        let audioFileName = songsAndAudioFiles[indexPath.section][indexPath.item].fileName
         playAudio(fileName: audioFileName)
-        tableView.deselectRow(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
     private func playAudio(fileName: String) {
@@ -58,31 +67,29 @@ class TableViewControllerMusic: UITableViewController {
             print("Error playing audio: \(error.localizedDescription)")
         }
     }
-    
+
     private func setupToolbarActions() {
-        // Connect toolbar buttons to actions
         let playButton = UIBarButtonItem(systemItem: .play)
         playButton.target = self
         playButton.action = #selector(playPauseAudio)
-        
+
         let stopButton = UIBarButtonItem(systemItem: .stop)
         stopButton.target = self
         stopButton.action = #selector(stopAudio)
-        
+
         let rewindButton = UIBarButtonItem(systemItem: .rewind)
         rewindButton.target = self
         rewindButton.action = #selector(previousTrack)
-        
+
         let fastForwardButton = UIBarButtonItem(systemItem: .fastForward)
         fastForwardButton.target = self
         fastForwardButton.action = #selector(nextTrack)
-        
-        // Add buttons to toolbar
+
         let flexibleSpace = UIBarButtonItem.flexibleSpace()
         toolbarItems = [rewindButton, flexibleSpace, playButton, flexibleSpace, stopButton, flexibleSpace, fastForwardButton]
         navigationController?.isToolbarHidden = false
     }
-    
+
     @objc private func playPauseAudio() {
         guard let audioPlayer = audioPlayer else { return }
         if audioPlayer.isPlaying {
@@ -99,17 +106,17 @@ class TableViewControllerMusic: UITableViewController {
 
     @objc private func nextTrack() {
         guard let currentTrackIndex = currentTrackIndex else { return }
-        let nextRow = (currentTrackIndex.row + 1) % songsAndAudioFiles[currentTrackIndex.section].count
-        self.currentTrackIndex = (currentTrackIndex.section, nextRow)
-        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextRow].fileName
+        let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
+        self.currentTrackIndex = (currentTrackIndex.section, nextItem)
+        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
         playAudio(fileName: audioFileName)
     }
 
     @objc private func previousTrack() {
         guard let currentTrackIndex = currentTrackIndex else { return }
-        let previousRow = (currentTrackIndex.row - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
-        self.currentTrackIndex = (currentTrackIndex.section, previousRow)
-        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousRow].fileName
+        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
+        self.currentTrackIndex = (currentTrackIndex.section, previousItem)
+        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
         playAudio(fileName: audioFileName)
     }
 }
