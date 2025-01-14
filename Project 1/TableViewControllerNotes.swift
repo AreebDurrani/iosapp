@@ -38,6 +38,11 @@ class CollectionViewControllerNotes: UICollectionViewController {
         contentConfiguration.text = notes[indexPath.row].content
         contentConfiguration.image = UIImage(named: "note")
         cell.contentConfiguration = contentConfiguration
+
+        // Add a long press gesture recognizer for deletion
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        cell.addGestureRecognizer(longPressRecognizer)
+
         return cell
     }
 
@@ -54,6 +59,20 @@ class CollectionViewControllerNotes: UICollectionViewController {
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        let point = gesture.location(in: collectionView)
+
+        if let indexPath = collectionView.indexPathForItem(at: point) {
+            let alert = UIAlertController(title: "Delete Note", message: "Are you sure you want to delete this note?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.deleteNote(at: indexPath)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     // MARK: - CoreData Operations
