@@ -1,36 +1,47 @@
 import UIKit
 import PDFKit
 
-class TableViewControllerBooks: UITableViewController {
+class CollectionViewControllerBooks: UICollectionViewController {
     
     let books: [[(title: String, fileName: String)]] = [[
-        ("Armageddon 2419 A.D.", "armageddon"), ("testBook2", "armageddon"), ("testBook3", "armageddon"), ("testBook4", "armageddon"), ("testBook5", "armageddon"), ("testBook6", "armageddon"), ("testBook7", "armageddon"), ("testBook8", "armageddon"), ("testBook9", "armageddon"), ("testBook10", "armageddon"), ("testBook11", "armageddon")
+        ("Armageddon 2419 A.D.", "armageddon"), ("testBook2", "armageddon"), ("testBook3", "armageddon"),
+        ("testBook4", "armageddon"), ("testBook5", "armageddon"), ("testBook6", "armageddon"),
+        ("testBook7", "armageddon"), ("testBook8", "armageddon"), ("testBook9", "armageddon"),
+        ("testBook10", "armageddon"), ("testBook11", "armageddon")
     ]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionViewLayout()
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
+
+    private func configureCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.bounds.width, height: 50)
+        layout.minimumLineSpacing = 1
+        collectionView.collectionViewLayout = layout
+    }
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return books.count
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books[section].count
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "booksCell", for: indexPath)
-        var contentConfiguration = cell.defaultContentConfiguration()
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "booksCell", for: indexPath)
+        var contentConfiguration = UIListContentConfiguration.cell()
         let book = books[indexPath.section][indexPath.row]
         contentConfiguration.text = book.title
         contentConfiguration.image = UIImage(named: "book")
         cell.contentConfiguration = contentConfiguration
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
 
         let selectedBook = books[indexPath.section][indexPath.row]
         let pdfViewController = PDFViewController()
@@ -71,4 +82,3 @@ class PDFViewController: UIViewController {
         present(alert, animated: true)
     }
 }
-
