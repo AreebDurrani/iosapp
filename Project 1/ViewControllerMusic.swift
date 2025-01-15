@@ -13,7 +13,6 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var collectionView: UICollectionView!
     var audioPlayer: AVAudioPlayer?
     var currentTrackIndex: (section: Int, item: Int)?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -35,7 +34,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         //layout.itemSize = CGSize(width: view.bounds.width, height: 50)
-        layout.itemSize = CGSize(width: 200, height: 50)
+        layout.itemSize = CGSize(width: 175, height: 200)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 0
         collectionView.collectionViewLayout = layout
@@ -50,11 +49,13 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicCell", for: indexPath)
-        var contentConfiguration = UIListContentConfiguration.cell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMusicCell", for: indexPath) as! MusicCollectionViewCell
+        /*var contentConfiguration = UIListContentConfiguration.cell()
         contentConfiguration.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
         contentConfiguration.image = UIImage(named: "music")
-        cell.contentConfiguration = contentConfiguration
+        cell.contentConfiguration = contentConfiguration*/
+        cell.songImage.image = UIImage(named: "music")
+        cell.songName.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
         return cell
     }
 
@@ -130,5 +131,17 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
         playAudio(fileName: audioFileName)
     }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        handleLogout()
+    }
+    
+}
 
+extension ViewControllerMusic {
+    func handleLogout() {
+        self.navigationController?.popToRootViewController(animated: false)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! ViewControllerLogin
+        self.navigationController?.setViewControllers([vc], animated: true)
+    }
 }
