@@ -22,6 +22,8 @@ class ViewControllerRegister: UIViewController {
         defaults.set(password, forKey: "registeredPassword")
         
         print("User registered: \(username)")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        self.navigationController?.setViewControllers([vc], animated: true)
     }
 }
 
