@@ -3,13 +3,11 @@ import UIKit
 class ViewControllerRegister: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        handleButtonUI()
+        //handleButtonUI()
     }
     
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
-    
-    @IBOutlet weak var signInButton: UIButton!
     
     @IBAction func registerPressed(_ sender: Any) {
         guard let username = usernameTextField.text, !username.isEmpty,
@@ -27,7 +25,7 @@ class ViewControllerRegister: UIViewController {
     }
 }
 
-extension ViewControllerRegister{
+/*extension ViewControllerRegister{
     func handleTextFieldUI() {
         
     }
@@ -47,4 +45,4 @@ extension ViewControllerRegister{
             //signInButton.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), for: .normal)
         }
     }
-}
+}*/
