@@ -24,7 +24,8 @@ class CollectionViewControllerMusic: UICollectionViewController {
 
     private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.bounds.width, height: 50)
+        //layout.itemSize = CGSize(width: view.bounds.width, height: 50)
+        layout.itemSize = CGSize(width: 200, height: 50)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 0
         collectionView.collectionViewLayout = layout
