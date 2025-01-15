@@ -3,6 +3,7 @@ import UIKit
 class ViewControllerRegister: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTextFields()
         //handleButtonUI()
     }
     
@@ -22,6 +23,22 @@ class ViewControllerRegister: UIViewController {
         defaults.set(password, forKey: "registeredPassword")
         
         print("User registered: \(username)")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        self.navigationController?.setViewControllers([vc], animated: true)
+    }
+}
+
+extension ViewControllerRegister {
+    func configureTextFields(){
+        usernameTextField.layer.borderWidth = 1
+        usernameTextField.layer.borderColor = UIColor.gray.cgColor
+        usernameTextField.layer.cornerRadius = 5.0
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.borderColor = UIColor.gray.cgColor
+        passwordTextField.layer.cornerRadius = 5.0
+        usernameTextField.frame.size.height = 40
+        passwordTextField.frame.size.height = 40
+        usernameTextField.layer.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0).cgColor
     }
 }
 
