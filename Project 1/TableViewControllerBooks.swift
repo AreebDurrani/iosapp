@@ -58,7 +58,7 @@ class CollectionViewControllerRecipes: CollectionViewControllerBooks {
     
     override func getBooks() -> [[(title: String, fileName: String)]] {
         return [[
-            ("Cheesebsurger", "armageddon"), ("Pizza", "armageddon"), ("Hot Dog", "armageddon"),
+            ("Cheeseburger", "burger"), ("Pizza", "armageddon"), ("Hot Dog", "armageddon"),
         ]]
     }
 }
