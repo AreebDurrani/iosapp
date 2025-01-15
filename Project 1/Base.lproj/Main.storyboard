@@ -372,9 +372,6 @@
                                     <color key="baseForegroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="baseBackgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="loginPressed:" destination="kWI-Hr-7sH" eventType="touchUpInside" id="and-Um-s8Z"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAC-OX-BAL">
                                 <rect key="frame" x="37" y="666" width="318" height="56"/>
