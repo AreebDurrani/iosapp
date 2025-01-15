@@ -6,7 +6,6 @@ class ViewControllerLogin: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTextFields()
        
         let defaults = UserDefaults.standard
         if defaults.string(forKey: "registeredUsername") == nil || defaults.string(forKey: "registeredPassword") == nil {
@@ -54,7 +53,7 @@ class ViewControllerLogin: UIViewController {
     }
 }
 
-extension ViewControllerLogin {
+/*extension ViewControllerLogin {
     func configureTextFields(){
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.borderColor = UIColor.gray.cgColor
@@ -66,5 +65,5 @@ extension ViewControllerLogin {
         passwordTextField.frame.size.height = 40
         usernameTextField.layer.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0).cgColor
     }
-}
+}*/
 

@@ -176,10 +176,10 @@
             </objects>
             <point key="canvasLocation" x="-4334" y="427"/>
         </scene>
-        <!--View Controller Login-->
+        <!--View Controller Login New-->
         <scene sceneID="eOY-3N-Y4V">
             <objects>
-                <viewController id="kWI-Hr-7sH" customClass="ViewControllerLogin" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kWI-Hr-7sH" customClass="ViewControllerLoginNew" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lja-Dk-8gR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,9 +237,6 @@
                                     <color key="baseForegroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="baseBackgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="loginPressed:" destination="kWI-Hr-7sH" eventType="touchUpInside" id="eC2-aP-k1a"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remember me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyl-vw-Hnq">
                                 <rect key="frame" x="100" y="437" width="112" height="21"/>
@@ -265,9 +262,6 @@
                                 <color key="tintColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up!"/>
-                                <connections>
-                                    <segue destination="lGu-19-NDd" kind="show" id="haK-ix-xXO"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yI-7Q-Wl4">
                                 <rect key="frame" x="37" y="344" width="74" height="21"/>
@@ -281,14 +275,10 @@
                         <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="DGC-ph-afd"/>
-                    <connections>
-                        <outlet property="passwordTextField" destination="IpJ-l6-vg6" id="TQ2-Ba-dux"/>
-                        <outlet property="usernameTextField" destination="SYW-GG-avs" id="ZR5-R3-hKg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="psh-W2-mor" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3146" y="1265"/>
+            <point key="canvasLocation" x="-4671" y="1103"/>
         </scene>
         <!--View Controller Register-->
         <scene sceneID="oaC-MN-e21">
@@ -656,9 +646,6 @@
             <point key="canvasLocation" x="-1605" y="-2528"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="8Hc-du-EFu"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
         <image name="music" width="90.178749084472656" height="90.178749084472656"/>
