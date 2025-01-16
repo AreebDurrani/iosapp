@@ -140,8 +140,6 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
 
 extension ViewControllerMusic {
     func handleLogout() {
-        self.navigationController?.popToRootViewController(animated: false)
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! ViewControllerLogin
-        self.navigationController?.setViewControllers([vc], animated: true)
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
 }
