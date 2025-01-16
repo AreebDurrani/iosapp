@@ -15,6 +15,10 @@ class MusicCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.layer.cornerRadius = 10
+        self.contentView.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
         songImage.translatesAutoresizingMaskIntoConstraints = false
         songName.translatesAutoresizingMaskIntoConstraints = false
             // Set constraints for the image view
