@@ -169,5 +169,14 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
             print("Error deleting note: \(error)")
         }
     }
+    @IBAction func logoutPressed(_ sender: Any) {
+        handleLogout()
+    }
+    
+}
 
+extension ViewControllerNotes {
+    func handleLogout() {
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+    }
 }
