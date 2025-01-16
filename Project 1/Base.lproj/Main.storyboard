@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kWI-Hr-7sH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JUR-YH-wZs">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -11,7 +11,7 @@
         <!--Main Tab Controller-->
         <scene sceneID="cYH-f6-EFz">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabController" id="Bks-rX-sjg" customClass="MainTabController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bks-rX-sjg" customClass="MainTabController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1Qn-jO-cjp"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sYV-HA-Jx3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -170,7 +170,7 @@
         <!--View Controller Login-->
         <scene sceneID="eOY-3N-Y4V">
             <objects>
-                <viewController storyboardIdentifier="LoginController" id="kWI-Hr-7sH" customClass="ViewControllerLogin" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kWI-Hr-7sH" customClass="ViewControllerLogin" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lja-Dk-8gR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="psh-W2-mor" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3745.801526717557" y="1102.8169014084508"/>
+            <point key="canvasLocation" x="-3822" y="1158"/>
         </scene>
         <!--View Controller Register-->
         <scene sceneID="oaC-MN-e21">
@@ -384,7 +384,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Placeholder Register -&gt; go to tab bar button"/>
                                 <connections>
-                                    <action selector="registerPressed:" destination="KwI-wk-66R" eventType="touchUpInside" id="rhX-Ah-oYZ"/>
+                                    <action selector="registerPressed:" destination="KwI-wk-66R" eventType="touchUpInside" id="R4n-Ci-iPf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -393,13 +393,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="cmy-nw-qNq"/>
                     <connections>
-                        <outlet property="passwordTextField" destination="NRr-Zo-Ac2" id="24C-M1-wf4"/>
-                        <outlet property="usernameTextField" destination="uax-Ui-xKg" id="TD0-Lt-USY"/>
+                        <outlet property="passwordTextField" destination="NRr-Zo-Ac2" id="qWI-mI-OY3"/>
+                        <outlet property="usernameTextField" destination="uax-Ui-xKg" id="zTm-bd-YvD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbd-Ax-9Ab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2022" y="1256"/>
+            <point key="canvasLocation" x="-3002" y="1158"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hYp-Kb-SB2">
@@ -508,7 +508,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="3ex-Mk-OB0">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="rm7-VK-UQF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="jee-Wb-KFP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="jee-Wb-KFP">
                                 <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -654,7 +654,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PvH-U1-xSw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-944" y="-1754"/>
+            <point key="canvasLocation" x="-703" y="-1892"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="M6J-BL-0c8">
