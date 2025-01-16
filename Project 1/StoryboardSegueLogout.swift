@@ -1,13 +1,13 @@
 //
-//  StoryboardSegueLogin.swift
+//  StoryboardSegueLogout.swift
 //  Project 1
 //
-//  Created by Areeb Durrani on 12/30/24.
+//  Created by Kenneth Yang on 1/16/25.
 //
 
 import UIKit
 
-class StoryboardSegueLogin: UIStoryboardSegue {
+class StoryboardSegueLogout: UIStoryboardSegue {
 override func perform() {
         let sourceViewController = self.source
         let destinationViewController = self.destination
