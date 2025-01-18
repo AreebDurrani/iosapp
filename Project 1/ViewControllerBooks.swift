@@ -9,10 +9,6 @@ import UIKit
 
 class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    
-    
-    
-
     @IBOutlet weak var genreSegment: UISegmentedControl!
     
     @IBOutlet weak var technicalCollectionView: UICollectionView!
@@ -35,8 +31,6 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         technicalCollectionView.isHidden = true
         cookingCollectionView.isHidden = true
         
-        
-        
         generalCollectionView.delegate = self
         generalCollectionView.dataSource = self
         technicalCollectionView.delegate = self
@@ -46,18 +40,13 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white, // Unselected color
-            //.font: UIFont.systemFont(ofSize: 14)
         ]
         genreSegment.setTitleTextAttributes(normalTextAttributes, for: .normal)
 
-        // Set text color for selected state
         let selectedTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.black, // Selected color
-            //.font: UIFont.boldSystemFont(ofSize: 14)
         ]
         genreSegment.setTitleTextAttributes(selectedTextAttributes, for: .selected)
-
-        // Do any additional setup after loading the view.
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -67,35 +56,31 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == generalCollectionView {
             return getGeneralBooks()[section].count
-        }
-        else if collectionView == technicalCollectionView {
+        } else if collectionView == technicalCollectionView {
             return getTechnicalBooks()[section].count
-        }
-        else{
+        } else {
             return getCookingBooks()[section].count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as! BooksCollectionViewCell
-                
-        if collectionView == generalCollectionView {
-            let book = getGeneralBooks()[indexPath.section][indexPath.row]
-            cell.title.text = book.title
-            cell.cover.image = UIImage(named: "book")
-        }
-        else if collectionView == technicalCollectionView {
-            let book = getTechnicalBooks()[indexPath.section][indexPath.row]
-            cell.title.text = book.title
-            cell.cover.image = UIImage(named: "book")
-        }
-        else {
-            let book = getCookingBooks()[indexPath.section][indexPath.row]
-            cell.title.text = book.title
-            cell.cover.image = UIImage(named: "book")
-        }
-                
+
+        let book = getBook(for: collectionView, at: indexPath)
+        cell.title.text = book.title
+        cell.cover.image = UIImage(named: "book") // Replace with dynamic logic if needed
+
         return cell
+    }
+
+    private func getBook(for collectionView: UICollectionView, at indexPath: IndexPath) -> (title: String, fileName: String) {
+        if collectionView == generalCollectionView {
+            return getGeneralBooks()[indexPath.section][indexPath.row]
+        } else if collectionView == technicalCollectionView {
+            return getTechnicalBooks()[indexPath.section][indexPath.row]
+        } else {
+            return getCookingBooks()[indexPath.section][indexPath.row]
+        }
     }
     
     private func configureCollectionViewLayout() {
@@ -116,7 +101,6 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         cookingCollectionView.setCollectionViewLayout(cookingLayout, animated: false)
     }
     
-    
     @IBAction func printNum(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
         generalCollectionView.isHidden = selectedIndex != 0
@@ -124,11 +108,9 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         cookingCollectionView.isHidden = selectedIndex != 2
     }
     
-    
     @IBAction func logoutPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
-    
 }
 
 extension ViewControllerBooks {
