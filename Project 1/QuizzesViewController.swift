@@ -15,7 +15,7 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set up the collection view
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -31,6 +31,11 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
         /*let leftInset = (collectionView.frame.width - 175) / 2 // Assuming item width is 175
         collectionView.contentInset = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: 0)*/
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
 
     // MARK: - UICollectionViewDataSource
