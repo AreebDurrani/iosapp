@@ -24,6 +24,7 @@
                         <segue destination="969-YO-M7C" kind="relationship" relationship="viewControllers" id="aZT-U6-iv7"/>
                         <segue destination="ad9-su-rCB" kind="relationship" relationship="viewControllers" id="gno-dp-PqO"/>
                         <segue destination="y4w-Gj-9av" kind="relationship" relationship="viewControllers" id="bPf-UD-ryB"/>
+                        <segue destination="zP3-lq-Umo" kind="relationship" relationship="viewControllers" id="Ryu-OR-0dT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eam-gt-HkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1034,7 +1035,7 @@
         <!--Quizzes View Controller-->
         <scene sceneID="icR-mV-QqS">
             <objects>
-                <viewController id="mv7-km-4xG" customClass="QuizzesViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizzesViewController" id="mv7-km-4xG" customClass="QuizzesViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="umU-pR-ZUW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1206,11 +1207,23 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asl-b9-kAg">
+                                <rect key="frame" x="159" y="474" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Return"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="9zu-BT-4Yj" eventType="touchUpInside" id="lLf-52-gZw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zzf-ij-5RR"/>
                         <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="returnButton" destination="asl-b9-kAg" id="cFf-9a-rNs"/>
                         <outlet property="scoreLabel" destination="Qyy-0Z-4Ma" id="Zwi-Ha-KD9"/>
                     </connections>
                 </viewController>
@@ -1265,11 +1278,13 @@
             </objects>
             <point key="canvasLocation" x="2510.6870229007632" y="1318.3098591549297"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Quiz-->
         <scene sceneID="3b1-1U-ygG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zP3-lq-Umo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Quiz" id="TSa-ul-m5f"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="IDP-sa-hU9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HRn-ib-PVi">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

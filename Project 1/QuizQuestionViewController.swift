@@ -29,6 +29,7 @@ class QuizQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true 
         buttonA.layer.cornerRadius = 10
         buttonB.layer.cornerRadius = 10
         buttonC.layer.cornerRadius = 10
