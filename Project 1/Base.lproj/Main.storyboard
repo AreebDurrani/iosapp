@@ -25,6 +25,9 @@
                         <segue destination="ad9-su-rCB" kind="relationship" relationship="viewControllers" id="gno-dp-PqO"/>
                         <segue destination="y4w-Gj-9av" kind="relationship" relationship="viewControllers" id="bPf-UD-ryB"/>
                         <segue destination="zP3-lq-Umo" kind="relationship" relationship="viewControllers" id="Ryu-OR-0dT"/>
+                        <segue destination="932-r4-awf" kind="relationship" relationship="viewControllers" id="fIl-AJ-icD"/>
+                        <segue destination="4oP-79-Igm" kind="relationship" relationship="viewControllers" id="hc7-IH-vt4"/>
+                        <segue destination="Ij8-9u-StB" kind="relationship" relationship="viewControllers" id="LN5-IQ-uXJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eam-gt-HkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,7 +90,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
                                     <action selector="logoutPressed:" destination="knQ-Yl-iAN" eventType="touchUpInside" id="B54-g8-FMy"/>
-                                    <segue destination="kWI-Hr-7sH" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="DUF-Df-3ai"/>
+                                    <segue destination="JUR-YH-wZs" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="wb1-Zg-umt"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -108,20 +111,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Szr-EB-zaE">
-                                <rect key="frame" x="16" y="102" width="361" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <segments>
-                                    <segment title="General"/>
-                                    <segment title="Technical"/>
-                                    <segment title="Cooking"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="printNum:" destination="hr5-Qh-bdv" eventType="valueChanged" id="hhi-ub-i5i"/>
-                                </connections>
-                            </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BH0-X3-y74">
                                 <rect key="frame" x="16" y="219" width="361" height="599"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -236,6 +225,29 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e57-Qk-dYF">
+                                <rect key="frame" x="16" y="100" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldChanged:" destination="hr5-Qh-bdv" eventType="editingChanged" id="wfC-5l-DYS"/>
+                                </connections>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Szr-EB-zaE">
+                                <rect key="frame" x="16" y="142" width="361" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="General"/>
+                                    <segment title="Technical"/>
+                                    <segment title="Cooking"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="printNum:" destination="hr5-Qh-bdv" eventType="valueChanged" id="hhi-ub-i5i"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="seI-YH-J0C"/>
                         <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
@@ -249,7 +261,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
-                                    <segue destination="kWI-Hr-7sH" kind="show" id="3TU-We-SJ1"/>
+                                    <segue destination="JUR-YH-wZs" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="XIF-Lo-0Bj"/>
                                 </connections>
                             </button>
                             <connections>
@@ -261,6 +273,7 @@
                         <outlet property="cookingCollectionView" destination="Aaq-lj-H1c" id="umf-Mp-m5W"/>
                         <outlet property="generalCollectionView" destination="BH0-X3-y74" id="iaL-tN-C5P"/>
                         <outlet property="genreSegment" destination="Szr-EB-zaE" id="goG-od-5Sg"/>
+                        <outlet property="searchTextField" destination="e57-Qk-dYF" id="DT3-Kq-fFM"/>
                         <outlet property="technicalCollectionView" destination="ymL-mU-doS" id="ZCy-V5-Vg3"/>
                     </connections>
                 </viewController>
@@ -746,6 +759,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldChanged:" destination="TNF-N8-cYl" eventType="editingChanged" id="ShC-1i-Shb"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pre-5X-UyQ"/>
@@ -761,15 +777,14 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
                                     <action selector="logoutPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="i1V-Bx-C1h"/>
+                                    <segue destination="JUR-YH-wZs" kind="show" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="wx8-yg-pS5"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <segue destination="kWI-Hr-7sH" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="Pd4-7x-Iq0"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="r3D-H0-PGK" id="q79-D1-Fuv"/>
+                        <outlet property="searchTextField" destination="dFY-wo-cz3" id="cF4-Be-dwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdp-4r-23k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -981,6 +996,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JUR-YH-wZs" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Sso-be-Zsy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="39K-Kc-rSv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -998,7 +1014,7 @@
         <scene sceneID="seP-Fk-oQw">
             <objects>
                 <navigationController title="NewMusicUI" automaticallyAdjustsScrollViewInsets="NO" id="y4w-Gj-9av" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4ZR-Lm-CV1"/>
+                    <tabBarItem key="tabBarItem" title="Music" id="4ZR-Lm-CV1" userLabel="Music"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SiQ-3w-KFw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoD-iw-WFT">
@@ -1014,10 +1030,11 @@
             </objects>
             <point key="canvasLocation" x="-2807" y="-120"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Notes-->
         <scene sceneID="11m-Tb-0QE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4oP-79-Igm" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4oP-79-Igm" userLabel="Notes" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notes" id="RhT-28-gAZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4DZ-Xp-FmE">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -1074,7 +1091,21 @@
                         <viewLayoutGuide key="safeArea" id="0P8-Tt-v0b"/>
                         <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TYf-It-fLK"/>
+                    <navigationItem key="navigationItem" id="TYf-It-fLK">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="YaG-EY-1Xr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="LhH-BG-xqU">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout">
+                                    <color key="baseForegroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="JUR-YH-wZs" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="0cm-U5-dJ6"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="lc0-hJ-cYf" id="Ziw-08-Gle"/>
                     </connections>
@@ -1231,10 +1262,10 @@
             </objects>
             <point key="canvasLocation" x="623.66412213740455" y="2357.7464788732395"/>
         </scene>
-        <!--Google Search View Controller-->
+        <!--Google-->
         <scene sceneID="nWa-Mm-5O0">
             <objects>
-                <viewController id="Ij8-9u-StB" customClass="GoogleSearchViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ij8-9u-StB" userLabel="Google" customClass="GoogleSearchViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J3d-nF-FJI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1252,6 +1283,7 @@
                         <viewLayoutGuide key="safeArea" id="fGE-qJ-Arm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Google" id="uMH-w5-fbK"/>
                     <connections>
                         <outlet property="googleSearchView" destination="NVO-Of-Gcr" id="90Y-Xr-uEO"/>
                     </connections>
@@ -1260,10 +1292,11 @@
             </objects>
             <point key="canvasLocation" x="2267.93893129771" y="2387.323943661972"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Books-->
         <scene sceneID="WP9-XG-TtZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="932-r4-awf" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="932-r4-awf" userLabel="Books" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Books" id="r1I-1m-XFy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zuM-Ps-xzZ">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -1300,7 +1333,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xdl-GW-40y"/>
+        <segue reference="XIF-Lo-0Bj"/>
         <segue reference="Che-OO-A0H"/>
     </inferredMetricsTieBreakers>
     <resources>
