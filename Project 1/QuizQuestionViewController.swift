@@ -29,12 +29,8 @@ class QuizQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = true 
-        buttonA.layer.cornerRadius = 10
-        buttonB.layer.cornerRadius = 10
-        buttonC.layer.cornerRadius = 10
-        buttonD.layer.cornerRadius = 10
-        nextButton.layer.cornerRadius = 10
+        tabBarController?.tabBar.isHidden = true
+        setButtonUI()
         changeQuestion(index: 0)
         changeAnswers(index: 0)
         nextButton.isHidden = true
@@ -161,6 +157,14 @@ extension QuizQuestionViewController {
         buttonB.isUserInteractionEnabled = true
         buttonC.isUserInteractionEnabled = true
         buttonD.isUserInteractionEnabled = true
+    }
+    
+    func setButtonUI(){
+        buttonA.layer.cornerRadius = 10
+        buttonB.layer.cornerRadius = 10
+        buttonC.layer.cornerRadius = 10
+        buttonD.layer.cornerRadius = 10
+        nextButton.layer.cornerRadius = 10
     }
     
     

@@ -5,6 +5,7 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var genreSegment: UISegmentedControl!
     
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var technicalCollectionView: UICollectionView!
     @IBOutlet weak var generalCollectionView: UICollectionView!
     @IBOutlet weak var cookingCollectionView: UICollectionView!
@@ -61,11 +62,11 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if collectionView == generalCollectionView {
-            return getGeneralBooks()[section].count
+            return generalBooks[section].count
         } else if collectionView == technicalCollectionView {
-            return getTechnicalBooks()[section].count
+            return technicalBooks[section].count
         } else {
-            return getCookingBooks()[section].count
+            return cookingBooks[section].count
         }
     }
     
@@ -132,11 +133,11 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     private func getBook(for collectionView: UICollectionView,
                          at indexPath: IndexPath) -> (title: String, fileName: String) {
         if collectionView == generalCollectionView {
-            return getGeneralBooks()[indexPath.section][indexPath.row]
+            return generalBooks[indexPath.section][indexPath.row] as! (title: String, fileName: String)
         } else if collectionView == technicalCollectionView {
-            return getTechnicalBooks()[indexPath.section][indexPath.row]
+            return technicalBooks[indexPath.section][indexPath.row] as! (title: String, fileName: String)
         } else {
-            return getCookingBooks()[indexPath.section][indexPath.row]
+            return cookingBooks[indexPath.section][indexPath.row] as! (title: String, fileName: String)
         }
     }
     
@@ -173,8 +174,13 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        handleLogout()
     }
+    
+    @IBAction func textFieldChanged(_ sender: Any) {
+        handleSearch()
+    }
+    
 }
 
 // MARK: - Extension for Data
@@ -205,5 +211,30 @@ extension ViewControllerBooks {
             ("Java", "java"),
             ("Swift", "swift")
         ]]
+    }
+}
+
+//functions for logout and search
+extension ViewControllerBooks {
+    func handleLogout() {
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+    }
+    
+    func handleSearch() {
+        if searchTextField.text!.isEmpty{
+            generalBooks = getGeneralBooks()
+            cookingBooks = getCookingBooks()
+            technicalBooks = getTechnicalBooks()
+        }
+        else{
+            print(searchTextField.text!)
+            generalBooks[0] = getGeneralBooks()[0].filter{$0.0.lowercased().hasPrefix(searchTextField.text!.lowercased())}
+            print(generalBooks)
+            cookingBooks[0] = getCookingBooks()[0].filter{$0.0.lowercased().hasPrefix(searchTextField.text!.lowercased())}
+            technicalBooks[0] = getTechnicalBooks()[0].filter{$0.0.lowercased().hasPrefix(searchTextField.text!.lowercased())}
+        }
+        generalCollectionView.reloadData()
+        cookingCollectionView.reloadData()
+        technicalCollectionView.reloadData()
     }
 }
