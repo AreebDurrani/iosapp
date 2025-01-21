@@ -10,6 +10,7 @@ import AVFoundation
 
 class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     var audioPlayer: AVAudioPlayer?
     var currentTrackIndex: (section: Int, item: Int)?
@@ -21,7 +22,17 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         configureCollectionViewLayout()
     }
 
-    let songsAndAudioFiles: [[(title: String, fileName: String)]] = [
+    var songsAndAudioFiles: [[(title: String, fileName: String)]] = [
+        [
+            ("Moonlight Sonata", "moonlight_sonata"),
+            ("Test Song 1", "test_song_1"),
+            ("Test Song 2", "test_song_2"),
+            ("Test Song 3", "test_song_3"),
+            ("Test Song 4", "test_song_4")
+        ]
+    ]
+    
+    let defaultSongData: [[(title: String, fileName: String)]] = [
         [
             ("Moonlight Sonata", "moonlight_sonata"),
             ("Test Song 1", "test_song_1"),
@@ -136,10 +147,26 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         handleLogout()
     }
     
+    
+    @IBAction func textfieldChanged(_ sender: Any) {
+        handleSearch()
+    }
+    
 }
 
 extension ViewControllerMusic {
     func handleLogout() {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
+    }
+    
+    func handleSearch() {
+        if searchTextField.text!.isEmpty{
+            songsAndAudioFiles = defaultSongData
+        }
+        else{
+            print(searchTextField.text!)
+            songsAndAudioFiles[0] = defaultSongData[0].filter{$0.0.lowercased().hasPrefix(searchTextField.text!.lowercased())}
+        }
+        collectionView.reloadData()
     }
 }
