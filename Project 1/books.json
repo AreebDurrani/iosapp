@@ -1,7 +1,7 @@
 {
   "Science Fiction": [
-    { "title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text/single-page" },
-    { "title": "Test Book 2", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text/single-page" }
+    { "title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text" },
+    { "title": "Test Book 2", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text" }
     ]
 }
 
