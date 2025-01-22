@@ -229,7 +229,7 @@ class ViewControllerBooks: UIViewController,
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         let js = """
         document.querySelectorAll('a').forEach(function(link) {
-            if (link.textContent.includes('Back to ebook')) {
+            if (link.textContent.includes('Back to ebook') || link.textContent.includes('Standard Ebooks')) {
                 link.remove();
             }
         });
