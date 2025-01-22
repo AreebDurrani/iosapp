@@ -20,9 +20,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="e63-mZ-hHa" kind="relationship" relationship="viewControllers" id="So4-MT-Nfi"/>
-                        <segue destination="969-YO-M7C" kind="relationship" relationship="viewControllers" id="aZT-U6-iv7"/>
-                        <segue destination="ad9-su-rCB" kind="relationship" relationship="viewControllers" id="gno-dp-PqO"/>
                         <segue destination="y4w-Gj-9av" kind="relationship" relationship="viewControllers" id="bPf-UD-ryB"/>
                         <segue destination="zP3-lq-Umo" kind="relationship" relationship="viewControllers" id="Ryu-OR-0dT"/>
                         <segue destination="932-r4-awf" kind="relationship" relationship="viewControllers" id="fIl-AJ-icD"/>
@@ -292,9 +289,6 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="ffZ-Q4-5cT" kind="relationship" relationship="rootViewController" id="rIZ-0X-fFb"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eX4-01-PhA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -334,9 +328,6 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="ahF-CK-lBX" kind="relationship" relationship="rootViewController" id="LP4-dp-Cel"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OiF-CZ-iAQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
