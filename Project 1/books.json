@@ -1,0 +1,20 @@
+{
+  "general": [
+    { "title": "Armageddon 2419 A.D.", "htmlURL": "https://example.com/armageddon2419.html" },
+    { "title": "Test Book 2",         "htmlURL": "https://example.com/testbook2.html" },
+    { "title": "Test Book 3",         "htmlURL": "https://example.com/testbook3.html" }
+  ],
+  "technical": [
+    { "title": "C Programming", "htmlURL": "https://example.com/c.html" },
+    { "title": "Swift Guide",   "htmlURL": "https://example.com/swift.html" }
+  ],
+  "cooking": [
+    { "title": "Cheeseburger", "htmlURL": "https://example.com/burger.html" },
+    { "title": "Pizza",        "htmlURL": "https://example.com/pizza.html" }
+  ],
+  "fantasy": [
+    { "title": "Lord of the Rings", "htmlURL": "https://example.com/lotr.html" },
+    { "title": "Harry Potter",      "htmlURL": "https://example.com/hp.html" }
+  ]
+}
+
