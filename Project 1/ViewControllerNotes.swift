@@ -15,11 +15,13 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var editViewTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     var notes: [Note] = [] // CoreData will manage this array
+    var selectedNote : Note?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionViewLayout()
         disableEditView()
+        setUpOverlayView()
         collectionView.delegate = self
         collectionView.dataSource = self
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
@@ -64,6 +66,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
+        selectedNote = note
         /*let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.text = note.content
@@ -183,10 +186,26 @@ extension ViewControllerNotes {
     
     func setUpEditView(noteContent : String) {
         editViewTextView.text = noteContent
+        editView.layer.cornerRadius = 10
     }
     
     func disableEditView(){
         editView.isHidden = true
         overlayView.isHidden = true
+        selectedNote = nil
+    }
+    
+    func setUpOverlayView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayViewTapped))
+        overlayView.isUserInteractionEnabled = true // Ensure the view can interact
+        overlayView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func overlayViewTapped(_ sender: UITapGestureRecognizer) {
+        if editView.isHidden == false{
+            self.updateNote(note: selectedNote!, with: selectedNote!.content!)
+            self.disableEditView()
+        }
+        
     }
 }

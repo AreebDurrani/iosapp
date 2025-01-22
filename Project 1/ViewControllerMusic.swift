@@ -110,8 +110,8 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
 
         let flexibleSpace = UIBarButtonItem.flexibleSpace()
         toolbarItems = [rewindButton, flexibleSpace, playButton, flexibleSpace, stopButton, flexibleSpace, fastForwardButton]
-        navigationController?.toolbar.barTintColor = UIColor.black
-        navigationController?.toolbar.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
+        navigationController?.toolbar.barTintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        navigationController?.toolbar.tintColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
         navigationController?.isToolbarHidden = false
     }
 
