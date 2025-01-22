@@ -12,18 +12,21 @@ class MainTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        //appearance.backgroundColor = UIColor(red: 183/255, green: 183/255, blue: 183/255, alpha: 1)// Customize this color
+        appearance.backgroundColor = UIColor.black
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
+
+        // Set the color for the selected tab
+        tabBar.tintColor = UIColor.green // Customize this color
+
+        // Set the color for the unselected tabs
+        tabBar.unselectedItemTintColor = UIColor.lightGray // Customize this color
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
