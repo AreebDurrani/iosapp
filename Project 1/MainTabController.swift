@@ -7,26 +7,28 @@
 
 import UIKit
 
-class MainTabController: UITabBarController {
+class MainTabController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         //appearance.backgroundColor = UIColor(red: 183/255, green: 183/255, blue: 183/255, alpha: 1)// Customize this color
         appearance.backgroundColor = UIColor.black
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
+        tabBar.barTintColor = UIColor.black
+        tabBar.isTranslucent = false
 
         // Set the color for the selected tab
         tabBar.tintColor = UIColor(red: 221/225, green: 232/225, blue: 10/225, alpha: 1) // Customize this color
 
         // Set the color for the unselected tabs
         tabBar.unselectedItemTintColor = UIColor.lightGray // Customize this color
+        for viewController in self.viewControllers ?? [] {
+                    viewController.view.backgroundColor = UIColor.black // Set consistent background color
+                }
     }
-    
-
     
 
 }

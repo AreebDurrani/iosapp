@@ -12,6 +12,10 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var editView: UIView!
+    
+    @IBOutlet weak var addView: UIView!
+    
+    @IBOutlet weak var addViewTextView: UITextView!
     @IBOutlet weak var editViewTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     var notes: [Note] = [] // CoreData will manage this array
@@ -21,10 +25,13 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         configureCollectionViewLayout()
         disableEditView()
+        disableAddView()
         setUpOverlayView()
         collectionView.delegate = self
         collectionView.dataSource = self
-        let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        //let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNote))
+
         //addNoteButton.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
         self.navigationItem.leftBarButtonItem = addNoteButton
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
@@ -195,6 +202,20 @@ extension ViewControllerNotes {
         selectedNote = nil
     }
     
+    func enableAddView() {
+        addView.isHidden = false
+        overlayView.isHidden = false
+    }
+    
+    func setUpaddView() {
+        addView.layer.cornerRadius = 10
+    }
+    
+    func disableAddView() {
+        addView.isHidden = true
+        overlayView.isHidden = true
+    }
+    
     func setUpOverlayView() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayViewTapped))
         overlayView.isUserInteractionEnabled = true // Ensure the view can interact
@@ -203,9 +224,20 @@ extension ViewControllerNotes {
     
     @objc func overlayViewTapped(_ sender: UITapGestureRecognizer) {
         if editView.isHidden == false{
-            self.updateNote(note: selectedNote!, with: selectedNote!.content!)
+            let updatedContent = editViewTextView.text!
+            self.updateNote(note: selectedNote!, with: updatedContent)
             self.disableEditView()
         }
-        
+        if addView.isHidden == false{
+            self.saveNote(content: addViewTextView.text!)
+            self.disableAddView()
+        }
     }
+    
+    @objc func newNote(){
+        setUpaddView()
+        enableAddView()
+    }
+    
+    
 }
