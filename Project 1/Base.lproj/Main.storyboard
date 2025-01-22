@@ -81,6 +81,17 @@
                             <view contentMode="scaleToFill" id="9Y4-E6-LpY">
                                 <rect key="frame" x="57" y="263" width="277" height="387"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r2n-CS-NuR">
+                                        <rect key="frame" x="8" y="8" width="261" height="371"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -105,6 +116,8 @@
                     <connections>
                         <outlet property="collectionView" destination="9ug-IC-R5I" id="h8X-8v-UXp"/>
                         <outlet property="editView" destination="9Y4-E6-LpY" id="qgK-2K-QJl"/>
+                        <outlet property="editViewTextView" destination="r2n-CS-NuR" id="biA-5O-mEl"/>
+                        <outlet property="overlayView" destination="Cat-8D-Zok" id="1fA-F3-Xao"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qk7-1R-3gA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1342,6 +1355,9 @@
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
         <image name="music" width="90.178749084472656" height="90.178749084472656"/>
         <image name="note" width="81.713752746582031" height="81.910629272460938"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

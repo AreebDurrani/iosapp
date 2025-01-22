@@ -20,7 +20,7 @@ class MainTabController: UITabBarController {
         tabBar.scrollEdgeAppearance = appearance
 
         // Set the color for the selected tab
-        tabBar.tintColor = UIColor.green // Customize this color
+        tabBar.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1) // Customize this color
 
         // Set the color for the unselected tabs
         tabBar.unselectedItemTintColor = UIColor.lightGray // Customize this color

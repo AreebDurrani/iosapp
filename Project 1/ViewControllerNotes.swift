@@ -10,14 +10,16 @@ import CoreData
 
 class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var editViewTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     var notes: [Note] = [] // CoreData will manage this array
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionViewLayout()
-        //editView.isHidden = true
+        disableEditView()
         collectionView.delegate = self
         collectionView.dataSource = self
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
@@ -62,7 +64,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
-        let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
+        /*let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.text = note.content
         }
@@ -72,7 +74,9 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)*/
+        enableEditView()
+        setUpEditView(noteContent : note.content!)
     }
 
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
@@ -172,7 +176,17 @@ extension ViewControllerNotes {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
     
-    func handleEditView() {
-        
+    func enableEditView() {
+        editView.isHidden = false
+        overlayView.isHidden = false
+    }
+    
+    func setUpEditView(noteContent : String) {
+        editViewTextView.text = noteContent
+    }
+    
+    func disableEditView(){
+        editView.isHidden = true
+        overlayView.isHidden = true
     }
 }
