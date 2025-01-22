@@ -1,7 +1,11 @@
 {
   "Science Fiction": [
-    { "title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text" },
-    { "title": "Test Book 2", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text" }
-    ]
+    {"title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text/titlepage"},
+    {"title": "A Princess of Mars", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text/titlepage"},
+    {"title": "Triplanetary", "htmlURL": "https://standardebooks.org/ebooks/e-e-smith/triplanetary/text/titlepage"}
+    ],
+  "Fantasy": [
+      {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage"}
+  ]
 }
 
