@@ -10,24 +10,16 @@ import CoreData
 
 class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var editView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     var notes: [Note] = [] // CoreData will manage this array
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionViewLayout()
+        //editView.isHidden = true
         collectionView.delegate = self
         collectionView.dataSource = self
-        /*let addButton = UIButton(type: .custom)
-            addButton.setImage(UIImage(systemName: "plus"), for: .normal) // Set an image for the button
-            addButton.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1) // Background color
-            addButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30) // Adjust size if needed
-            addButton.layer.cornerRadius = 5 // Optional: Rounded corners
-            addButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
-
-            // Create a UIBarButtonItem with the custom UIButton
-            let addNoteButton = UIBarButtonItem(customView: addButton)
-            self.navigationItem.leftBarButtonItem = addNoteButton*/
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         //addNoteButton.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
         self.navigationItem.leftBarButtonItem = addNoteButton
@@ -178,5 +170,9 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 extension ViewControllerNotes {
     func handleLogout() {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
+    }
+    
+    func handleEditView() {
+        
     }
 }
