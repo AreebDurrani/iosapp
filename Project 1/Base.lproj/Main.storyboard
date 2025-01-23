@@ -14,15 +14,11 @@
             <objects>
                 <tabBarController storyboardIdentifier="MainTabController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bks-rX-sjg" customClass="MainTabController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1Qn-jO-cjp"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sYV-HA-Jx3">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="sYV-HA-Jx3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="e63-mZ-hHa" kind="relationship" relationship="viewControllers" id="So4-MT-Nfi"/>
-                        <segue destination="969-YO-M7C" kind="relationship" relationship="viewControllers" id="aZT-U6-iv7"/>
-                        <segue destination="ad9-su-rCB" kind="relationship" relationship="viewControllers" id="gno-dp-PqO"/>
                         <segue destination="y4w-Gj-9av" kind="relationship" relationship="viewControllers" id="bPf-UD-ryB"/>
                         <segue destination="zP3-lq-Umo" kind="relationship" relationship="viewControllers" id="Ryu-OR-0dT"/>
                         <segue destination="932-r4-awf" kind="relationship" relationship="viewControllers" id="fIl-AJ-icD"/>
@@ -39,7 +35,7 @@
             <objects>
                 <viewController id="knQ-Yl-iAN" customClass="ViewControllerNotes" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Gk-EX-SU8">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9ug-IC-R5I">
@@ -60,8 +56,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-cl-8kB">
-                                                    <rect key="frame" x="42" y="54" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-cl-8kB">
+                                                    <rect key="frame" x="42" y="40" width="86" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -76,6 +72,42 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3CI-c2-Lzy">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDj-fT-YGe">
+                                <rect key="frame" x="39" y="249" width="314" height="353"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yGr-wJ-mDV">
+                                        <rect key="frame" x="8" y="8" width="298" height="337"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pj6-0s-bsR">
+                                <rect key="frame" x="39" y="208" width="314" height="353"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eZb-xg-b7g">
+                                        <rect key="frame" x="8" y="8" width="298" height="337"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.90980392160000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zcj-sC-T6f"/>
                         <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -96,7 +128,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addView" destination="pj6-0s-bsR" id="k19-Gw-yg2"/>
+                        <outlet property="addViewTextView" destination="eZb-xg-b7g" id="lzd-4a-XIS"/>
                         <outlet property="collectionView" destination="9ug-IC-R5I" id="h8X-8v-UXp"/>
+                        <outlet property="editView" destination="nDj-fT-YGe" id="xNl-l1-GWK"/>
+                        <outlet property="editViewTextView" destination="yGr-wJ-mDV" id="U1V-iq-mQR"/>
+                        <outlet property="overlayView" destination="3CI-c2-Lzy" id="NYa-wj-Xaa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qk7-1R-3gA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -108,7 +145,7 @@
             <objects>
                 <viewController id="hr5-Qh-bdv" customClass="ViewControllerBooks" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xWg-cY-4CD">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BH0-X3-y74">
@@ -634,11 +671,11 @@
             <objects>
                 <viewController id="TNF-N8-cYl" customClass="ViewControllerMusic" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A7z-4o-b7j">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r3D-H0-PGK">
-                                <rect key="frame" x="16" y="190" width="361" height="510"/>
+                                <rect key="frame" x="16" y="190" width="361" height="579"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NUe-xL-fo6">
@@ -935,7 +972,7 @@
         <scene sceneID="seP-Fk-oQw">
             <objects>
                 <navigationController title="NewMusicUI" automaticallyAdjustsScrollViewInsets="NO" id="y4w-Gj-9av" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Music" id="4ZR-Lm-CV1" userLabel="Music"/>
+                    <tabBarItem key="tabBarItem" title="Music" image="music.note.list" catalog="system" selectedImage="music.note.list" id="4ZR-Lm-CV1" userLabel="Music"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SiQ-3w-KFw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoD-iw-WFT">
@@ -955,7 +992,7 @@
         <scene sceneID="11m-Tb-0QE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4oP-79-Igm" userLabel="Notes" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notes" id="RhT-28-gAZ"/>
+                    <tabBarItem key="tabBarItem" title="Notes" image="pencil" catalog="system" selectedImage="pencil" id="RhT-28-gAZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4DZ-Xp-FmE">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -975,7 +1012,7 @@
             <objects>
                 <viewController storyboardIdentifier="QuizzesViewController" id="mv7-km-4xG" customClass="QuizzesViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="umU-pR-ZUW">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-hJ-cYf">
@@ -1014,7 +1051,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="TYf-It-fLK">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="YaG-EY-1Xr">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="LhH-BG-xqU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="LhH-BG-xqU">
                                 <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -1188,11 +1225,11 @@
             <objects>
                 <viewController id="Ij8-9u-StB" userLabel="Google" customClass="GoogleSearchViewController" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J3d-nF-FJI">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-Of-Gcr">
-                                <rect key="frame" x="0.0" y="114" width="393" height="659"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="773"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -1204,7 +1241,7 @@
                         <viewLayoutGuide key="safeArea" id="fGE-qJ-Arm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Google" id="uMH-w5-fbK"/>
+                    <tabBarItem key="tabBarItem" title="Google" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="uMH-w5-fbK"/>
                     <connections>
                         <outlet property="googleSearchView" destination="NVO-Of-Gcr" id="90Y-Xr-uEO"/>
                     </connections>
@@ -1217,7 +1254,7 @@
         <scene sceneID="WP9-XG-TtZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="932-r4-awf" userLabel="Books" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Books" id="r1I-1m-XFy"/>
+                    <tabBarItem key="tabBarItem" title="Books" image="book.fill" catalog="system" selectedImage="book.fill" id="r1I-1m-XFy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zuM-Ps-xzZ">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -1236,7 +1273,7 @@
         <scene sceneID="3b1-1U-ygG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zP3-lq-Umo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Quiz" id="TSa-ul-m5f"/>
+                    <tabBarItem key="tabBarItem" title="Quiz" image="questionmark" catalog="system" landscapeImage="questionmark" selectedImage="questionmark" id="TSa-ul-m5f"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IDP-sa-hU9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HRn-ib-PVi">
@@ -1254,13 +1291,21 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XIF-Lo-0Bj"/>
+        <segue reference="wb1-Zg-umt"/>
         <segue reference="Che-OO-A0H"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="music" width="90.178749084472656" height="90.178749084472656"/>
+        <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="note" width="81.713752746582031" height="81.910629272460938"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="questionmark" catalog="system" width="94" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

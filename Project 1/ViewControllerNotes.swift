@@ -10,25 +10,28 @@ import CoreData
 
 class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var editView: UIView!
+    
+    @IBOutlet weak var addView: UIView!
+    
+    @IBOutlet weak var addViewTextView: UITextView!
+    @IBOutlet weak var editViewTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     var notes: [Note] = [] // CoreData will manage this array
+    var selectedNote : Note?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionViewLayout()
+        disableEditView()
+        disableAddView()
+        setUpOverlayView()
         collectionView.delegate = self
         collectionView.dataSource = self
-        /*let addButton = UIButton(type: .custom)
-            addButton.setImage(UIImage(systemName: "plus"), for: .normal) // Set an image for the button
-            addButton.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1) // Background color
-            addButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30) // Adjust size if needed
-            addButton.layer.cornerRadius = 5 // Optional: Rounded corners
-            addButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
+        //let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNote))
 
-            // Create a UIBarButtonItem with the custom UIButton
-            let addNoteButton = UIBarButtonItem(customView: addButton)
-            self.navigationItem.leftBarButtonItem = addNoteButton*/
-        let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         //addNoteButton.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
         self.navigationItem.leftBarButtonItem = addNoteButton
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
@@ -70,7 +73,8 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
-        let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
+        selectedNote = note
+        /*let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.text = note.content
         }
@@ -80,7 +84,9 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)*/
+        enableEditView()
+        setUpEditView(noteContent : note.content!)
     }
 
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
@@ -179,4 +185,59 @@ extension ViewControllerNotes {
     func handleLogout() {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
+    
+    func enableEditView() {
+        editView.isHidden = false
+        overlayView.isHidden = false
+    }
+    
+    func setUpEditView(noteContent : String) {
+        editViewTextView.text = noteContent
+        editView.layer.cornerRadius = 10
+    }
+    
+    func disableEditView(){
+        editView.isHidden = true
+        overlayView.isHidden = true
+        selectedNote = nil
+    }
+    
+    func enableAddView() {
+        addView.isHidden = false
+        overlayView.isHidden = false
+    }
+    
+    func setUpaddView() {
+        addView.layer.cornerRadius = 10
+    }
+    
+    func disableAddView() {
+        addView.isHidden = true
+        overlayView.isHidden = true
+    }
+    
+    func setUpOverlayView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayViewTapped))
+        overlayView.isUserInteractionEnabled = true // Ensure the view can interact
+        overlayView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func overlayViewTapped(_ sender: UITapGestureRecognizer) {
+        if editView.isHidden == false{
+            let updatedContent = editViewTextView.text!
+            self.updateNote(note: selectedNote!, with: updatedContent)
+            self.disableEditView()
+        }
+        if addView.isHidden == false{
+            self.saveNote(content: addViewTextView.text!)
+            self.disableAddView()
+        }
+    }
+    
+    @objc func newNote(){
+        setUpaddView()
+        enableAddView()
+    }
+    
+    
 }
