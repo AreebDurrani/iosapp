@@ -11,11 +11,12 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let images = ["everest", "paris", "monalisa"] // Replace with your image names
+    let images = ["everest", "paris", "monalisa"]
+    let titles = ["Elevation Guesser", "Capital Guesser", "Painter Guesser"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.titleView = createUsernameLabel().customView
         // Set up the collection view
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -48,6 +49,7 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCarouselCell", for: indexPath) as! QuizCarouselCell
         let imageName = images[indexPath.item]
         cell.quizImg.image = UIImage(named: imageName) // Replace with image loading logic for URLs if needed
+        cell.quizTitle.text = titles[indexPath.item]
         return cell
     }
     
