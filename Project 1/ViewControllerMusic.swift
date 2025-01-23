@@ -17,6 +17,13 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = createUsernameLabel().customView
+        if let navigationController = self.navigationController {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground() // Prevents transparency
+            appearance.backgroundColor = UIColor.black // Set your desired background color
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+        }
         collectionView.delegate = self
         collectionView.dataSource = self
         setupToolbarActions()
