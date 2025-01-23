@@ -485,6 +485,7 @@
                     <navigationItem key="navigationItem" id="DGC-ph-afd"/>
                     <connections>
                         <outlet property="passwordTextField" destination="IpJ-l6-vg6" id="REH-t1-eFx"/>
+                        <outlet property="rememberMeSwitch" destination="xkf-fM-hwu" id="4rx-t7-Gyz"/>
                         <outlet property="usernameTextField" destination="SYW-GG-avs" id="jsJ-nZ-LXG"/>
                     </connections>
                 </viewController>
@@ -497,7 +498,7 @@
             <objects>
                 <viewController id="KwI-wk-66R" customClass="ViewControllerRegister" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qPz-9a-het">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IMPLEMENT LATER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZT-bM-cvk">
@@ -606,6 +607,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="NRr-Zo-Ac2" id="qWI-mI-OY3"/>
                         <outlet property="usernameTextField" destination="uax-Ui-xKg" id="zTm-bd-YvD"/>
+                        <segue destination="Bks-rX-sjg" kind="custom" identifier="loginSegue" customClass="StoryboardSegueLogin" customModule="Project_1" customModuleProvider="target" id="asg-HO-f0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbd-Ax-9Ab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1292,7 +1294,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wb1-Zg-umt"/>
-        <segue reference="Che-OO-A0H"/>
+        <segue reference="asg-HO-f0n"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
