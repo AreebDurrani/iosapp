@@ -62,6 +62,7 @@ class ViewControllerBooks: UIViewController,
         do {
             // 2) Load data & decode
             let data = try Data(contentsOf: fileURL)
+
             let allBooks = try JSONDecoder().decode(BooksByGenre.self, from: data)
             
             // 3) Store and set up
@@ -223,6 +224,7 @@ class ViewControllerBooks: UIViewController,
         present(webViewController, animated: true)
     }
     
+
     // MARK: - WKNavigationDelegate
     
     // Once the page has loaded, inject JS to remove any "Back to Ebook" links

@@ -18,6 +18,15 @@ class NotesCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
+        noteText.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noteText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8), // Padding from the top
+            noteText.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8), // Padding from the bottom
+            noteText.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor), // Center horizontally in the contentView
+            noteText.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),  // Center vertically in the contentView
+            noteText.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.leadingAnchor, constant: 8), // Maintain padding
+            noteText.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -8) // Maintain padding
+        ])
     }
     
     

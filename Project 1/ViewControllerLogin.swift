@@ -28,7 +28,7 @@ class ViewControllerLogin: UIViewController {
 
         if validateLogin(username: usernameInput, password: passwordInput) {
                 print("Login successful")
-                
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
                 let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
                 feedbackGenerator.impactOccurred()
                 
@@ -38,7 +38,7 @@ class ViewControllerLogin: UIViewController {
                 let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                 /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
                 self.navigationController?.setViewControllers([vc], animated: true)*/
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
+                //self.performSegue(withIdentifier: "loginSegue", sender: self)
             }
             alertController.addAction(okAction)
             
