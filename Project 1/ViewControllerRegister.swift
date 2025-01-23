@@ -10,16 +10,43 @@ class ViewControllerRegister: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
 
+    @IBOutlet weak var reenterPassTextField: UITextField!
     @IBAction func registerPressed(_ sender: Any) {
         guard let username = usernameTextField.text, !username.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
             print("Username or password is empty")
+            let alertController = UIAlertController(title: "Login Failed",
+                                                    message: "Invalid username or password.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
             return
+        }
+        guard let reenteredPass = reenterPassTextField.text, !reenteredPass.isEmpty else {
+            print("Please re-enter password")
+            let alertController = UIAlertController(title: "Login Failed",
+                                                    message: "Please re-enter your password.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if reenteredPass != password {
+            let alertController = UIAlertController(title: "Signup Failed",
+                                                    message: "Passwords must match!",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
 
         // Save the Account to Core Data
         saveAccount(username: username, password: password)
-
+        //Store username into singleton for display
+        UsernameManager.shared.username = username
         print("User registered: \(username)")
         
         // Navigate to MainTabController
@@ -56,11 +83,15 @@ extension ViewControllerRegister {
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.borderColor = UIColor.gray.cgColor
         usernameTextField.layer.cornerRadius = 5.0
+        usernameTextField.frame.size.height = 40
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.borderColor = UIColor.gray.cgColor
         passwordTextField.layer.cornerRadius = 5.0
-        usernameTextField.frame.size.height = 40
         passwordTextField.frame.size.height = 40
         usernameTextField.layer.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0).cgColor
+        reenterPassTextField.layer.borderWidth = 1
+        reenterPassTextField.layer.borderColor = UIColor.gray.cgColor
+        reenterPassTextField.layer.cornerRadius = 5.0
+        reenterPassTextField.frame.size.height = 40
     }
 }
