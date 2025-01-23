@@ -1,8 +1,11 @@
 import UIKit
 import WebKit  // for WKWebView
 
-class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class ViewControllerBooks: UIViewController,
+                          UICollectionViewDelegate,
+                          UICollectionViewDataSource,
+                          WKNavigationDelegate  // <-- Added here
+{
     @IBOutlet weak var genreSegment: UISegmentedControl!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var booksCollectionView: UICollectionView!
@@ -15,7 +18,6 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
     // A dictionary from genre-name => array of Book objects
     typealias BooksByGenre = [String: [Book]]
 
-    
     // This will hold the original data from the local JSON
     private var booksByGenre: BooksByGenre = [:]
     
@@ -60,7 +62,7 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         do {
             // 2) Load data & decode
             let data = try Data(contentsOf: fileURL)
-            // booksByGenre is a dictionary: [String: [Book]]
+
             let allBooks = try JSONDecoder().decode(BooksByGenre.self, from: data)
             
             // 3) Store and set up
@@ -71,7 +73,9 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
             // 4) Build segmented control with these genre names
             genreSegment.removeAllSegments()
             for (index, genreName) in genres.enumerated() {
-                genreSegment.insertSegment(withTitle: genreName.capitalized, at: index, animated: false)
+                genreSegment.insertSegment(withTitle: genreName.capitalized,
+                                           at: index,
+                                           animated: false)
             }
             
             // 5) Default selection to first genre (if any)
@@ -196,6 +200,10 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         
         // Create a WKWebView
         let webView = WKWebView(frame: .zero)
+        // Set this view controller as the navigation delegate
+        webView.navigationDelegate = self
+        
+        // Load the request
         webView.load(URLRequest(url: url))
         
         // Create a view controller to display the webView
@@ -214,6 +222,21 @@ class ViewControllerBooks: UIViewController, UICollectionViewDelegate, UICollect
         
         // Present the web view controller modally (or push if you have a navigation stack)
         present(webViewController, animated: true)
+    }
+    
+
+    // MARK: - WKNavigationDelegate
+    
+    // Once the page has loaded, inject JS to remove any "Back to Ebook" links
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let js = """
+        document.querySelectorAll('a').forEach(function(link) {
+            if (link.textContent.includes('Back to ebook') || link.textContent.includes('Standard Ebooks')) {
+                link.remove();
+            }
+        });
+        """
+        webView.evaluateJavaScript(js, completionHandler: nil)
     }
     
     // MARK: - Layout
