@@ -23,8 +23,10 @@ class ViewControllerRegister: UIViewController {
         print("User registered: \(username)")
         
         // Navigate to MainTabController
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
-        self.navigationController?.setViewControllers([vc], animated: true)
+        /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        
+        self.navigationController?.setViewControllers([vc], animated: true)*/
+        self.performSegue(withIdentifier: "loginSegue", sender: self)
     }
 
     private func saveAccount(username: String, password: String) {
