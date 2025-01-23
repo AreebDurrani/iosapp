@@ -16,6 +16,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     var currentTrackIndex: (section: Int, item: Int)?
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.titleView = createUsernameLabel().customView
         collectionView.delegate = self
         collectionView.dataSource = self
         setupToolbarActions()

@@ -27,6 +27,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         disableEditView()
         disableAddView()
         setUpOverlayView()
+        navigationItem.titleView = createUsernameLabel().customView
         collectionView.delegate = self
         collectionView.dataSource = self
         //let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
