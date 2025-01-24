@@ -162,7 +162,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
-        //playAudio(withURL: previewURL)
+        let previewURL = fetchedTracks[nextItem].previewURL
+        playAudio(withURL: previewURL)
     }
 
     @objc private func previousTrack() {
@@ -170,7 +171,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
-        //playAudio(withURL: previewURL)
+        let previewURL = fetchedTracks[previousItem].previewURL
+        playAudio(withURL: previewURL)
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
