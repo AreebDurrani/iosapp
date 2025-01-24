@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -16,6 +16,12 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     var currentTrackIndex: (section: Int, item: Int)?
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTracks {
+                // Once fetchTracks finishes, reload the collection view with the fetched data
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         navigationItem.titleView = createUsernameLabel().customView
         if let navigationController = self.navigationController {
             let appearance = UINavigationBarAppearance()
@@ -66,6 +72,8 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(fetchedTracks.count)
+        return fetchedTracks.count
         return songsAndAudioFiles[section].count
     }
 
@@ -75,8 +83,19 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         contentConfiguration.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
         contentConfiguration.image = UIImage(named: "music")
         cell.contentConfiguration = contentConfiguration*/
+        if let imageUrl = URL(string: fetchedTracks[indexPath.item].coverImageURL) {
+            UIImage.load(from: imageUrl) { image in
+                if let loadedImage = image {
+                    // Use the loaded image
+                    cell.songImage.image = loadedImage
+                } else {
+                    // Handle the error case
+                    print("Failed to load image")
+                }
+            }
+        }
         cell.songImage.image = UIImage(named: "music")
-        cell.songName.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
+        cell.songName.text = fetchedTracks[indexPath.item].title
         return cell
     }
 
@@ -167,7 +186,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     
 }
 
-extension ViewControllerMusic {
+extension ViewControllerMusic2 {
     func handleLogout() {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
@@ -184,6 +203,39 @@ extension ViewControllerMusic {
     }
 }
 
+extension ViewControllerMusic2 {
+    
+    func fetchTracks(completion: @escaping () -> Void){
+        fetchRockTracksWithPreview { tracks in
+            for track in tracks {
+                self.fetchedTracks.append(track)
+                print("Track: \(track.title), Artist: \(track.artist), Preview URL: \(track.previewURL)")
+            }
+            completion()
+        }
+        
+    }
+}
 
+extension UIImage {
+    // Load an image from a URL
+    static func load(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        // Start an async task to download the image data
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // If the data is valid and there's no error, create the image
+            if let data = data, error == nil {
+                let image = UIImage(data: data)
+                // Call the completion handler on the main thread
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }.resume()
+    }
+}
 
 
