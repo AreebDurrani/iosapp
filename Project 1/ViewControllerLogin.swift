@@ -36,6 +36,7 @@ class ViewControllerLogin: UIViewController {
                 print("Login successful")
             
                 handleRememberMe(rememberSwitch: rememberMeSwitch)
+                UsernameManager.shared.username = usernameInput
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
                 let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
                 feedbackGenerator.impactOccurred()
