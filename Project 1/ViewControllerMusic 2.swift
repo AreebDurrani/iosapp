@@ -8,14 +8,21 @@
 import UIKit
 import AVFoundation
 
-class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     var audioPlayer: AVAudioPlayer?
+    var player: AVPlayer?
     var currentTrackIndex: (section: Int, item: Int)?
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTracks {
+                // Once fetchTracks finishes, reload the collection view with the fetched data
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         navigationItem.titleView = createUsernameLabel().customView
         if let navigationController = self.navigationController {
             let appearance = UINavigationBarAppearance()
@@ -66,7 +73,9 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return songsAndAudioFiles[section].count
+        print(fetchedTracks.count)
+        return fetchedTracks.count
+        //return songsAndAudioFiles[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -75,30 +84,38 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         contentConfiguration.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
         contentConfiguration.image = UIImage(named: "music")
         cell.contentConfiguration = contentConfiguration*/
+        if let imageUrl = URL(string: fetchedTracks[indexPath.item].coverImageURL) {
+            UIImage.load(from: imageUrl) { image in
+                if let loadedImage = image {
+                    // Use the loaded image
+                    cell.songImage.image = loadedImage
+                } else {
+                    // Handle the error case
+                    print("Failed to load image")
+                }
+            }
+        }
         cell.songImage.image = UIImage(named: "music")
-        cell.songName.text = songsAndAudioFiles[indexPath.section][indexPath.item].title
+        cell.songName.text = fetchedTracks[indexPath.item].title
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentTrackIndex = (section: indexPath.section, item: indexPath.item)
-        let audioFileName = songsAndAudioFiles[indexPath.section][indexPath.item].fileName
-        playAudio(fileName: audioFileName)
+        let previewURL = fetchedTracks[indexPath.item].previewURL
+        playAudio(withURL: previewURL)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
-    private func playAudio(fileName: String) {
-        guard let audioDataAsset = NSDataAsset(name: fileName) else {
-            print("Audio asset not found: \(fileName)")
+    private func playAudio(withURL urlString: String) {
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
             return
         }
-
-        do {
-            audioPlayer = try AVAudioPlayer(data: audioDataAsset.data)
-            audioPlayer?.play()
-        } catch {
-            print("Error playing audio: \(error.localizedDescription)")
-        }
+        
+        // Create the player with the URL and start playback
+        player = AVPlayer(url: url)
+        player?.play()
     }
 
     private func setupToolbarActions() {
@@ -127,8 +144,8 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     @objc private func playPauseAudio() {
-        guard let audioPlayer = audioPlayer else { return }
-        if audioPlayer.isPlaying {
+        guard let audioPlayer = player else { return }
+        if player?.timeControlStatus == .playing {
             audioPlayer.pause()
         } else {
             audioPlayer.play()
@@ -136,8 +153,8 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     @objc private func stopAudio() {
-        audioPlayer?.stop()
-        audioPlayer?.currentTime = 0
+        player?.pause()
+        //player?.currentTime = 0
     }
 
     @objc private func nextTrack() {
@@ -145,7 +162,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
-        playAudio(fileName: audioFileName)
+        //playAudio(withURL: previewURL)
     }
 
     @objc private func previousTrack() {
@@ -153,7 +170,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
         let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
-        playAudio(fileName: audioFileName)
+        //playAudio(withURL: previewURL)
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
@@ -167,7 +184,7 @@ class ViewControllerMusic: UIViewController, UICollectionViewDelegate, UICollect
     
 }
 
-extension ViewControllerMusic {
+extension ViewControllerMusic2 {
     func handleLogout() {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
@@ -184,6 +201,39 @@ extension ViewControllerMusic {
     }
 }
 
+extension ViewControllerMusic2 {
+    
+    func fetchTracks(completion: @escaping () -> Void){
+        fetchRockTracksWithPreview { tracks in
+            for track in tracks {
+                self.fetchedTracks.append(track)
+                print("Track: \(track.title), Artist: \(track.artist), Preview URL: \(track.previewURL)")
+            }
+            completion()
+        }
+        
+    }
+}
 
+extension UIImage {
+    // Load an image from a URL
+    static func load(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        // Start an async task to download the image data
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // If the data is valid and there's no error, create the image
+            if let data = data, error == nil {
+                let image = UIImage(data: data)
+                // Call the completion handler on the main thread
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }.resume()
+    }
+}
 
 
