@@ -1,11 +1,11 @@
 {
   "Science Fiction": [
-    {"title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text/titlepage"},
-    {"title": "A Princess of Mars", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text/titlepage"},
-    {"title": "Triplanetary", "htmlURL": "https://standardebooks.org/ebooks/e-e-smith/triplanetary/text/titlepage"}
+    {"title": "Armageddon 2419 A.D.", "htmlURL": "https://standardebooks.org/ebooks/philip-francis-nowlan/armageddon-2419-a-d/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/philip-francis-nowlan_armageddon-2419-a-d-96fb8534-cover.avif"},
+    {"title": "A Princess of Mars", "htmlURL": "https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/edgar-rice-burroughs_a-princess-of-mars-2d40fcdb-cover.avif"},
+    {"title": "Triplanetary", "htmlURL": "https://standardebooks.org/ebooks/e-e-smith/triplanetary/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-e-smith_triplanetary-0ebe1f23-cover.avif"}
     ],
   "Fantasy": [
-      {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage"}
+      {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/walter-de-la-mare_the-return-854f0e05-cover.avif"}
   ]
 }
 
