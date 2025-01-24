@@ -13,6 +13,7 @@ class ViewControllerBooks: UIViewController,
     struct Book: Decodable {
         let title: String
         let htmlURL: String
+        let coverURL: String
     }
 
     // A dictionary from genre-name => array of Book objects
@@ -156,25 +157,56 @@ class ViewControllerBooks: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell",
-                                                      for: indexPath) as! BooksCollectionViewCell
-        
-        // Find the selected genre
-        let selectedIndex = genreSegment.selectedSegmentIndex
-        let selectedGenre = genres[selectedIndex]
-        
-        // Get the book for that row
-        if let booksArray = filteredBooksByGenre[selectedGenre] {
-            let book = booksArray[indexPath.row]
+                            cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell",
+                                                          for: indexPath) as! BooksCollectionViewCell
             
-            // Configure the cell
-            cell.title.text = book.title
-            cell.cover.image = UIImage(named: "book")  // or any placeholder
+            // Find the selected genre
+            let selectedIndex = genreSegment.selectedSegmentIndex
+            let selectedGenre = genres[selectedIndex]
+            
+            // Get the book for that row
+            if let booksArray = filteredBooksByGenre[selectedGenre] {
+                let book = booksArray[indexPath.row]
+                
+                // Configure the cell title
+                cell.title.text = book.title
+                
+                // 2) Load the AVIF image
+                if let url = URL(string: book.coverURL) {
+                    // Use async/await (iOS 15+) or a background thread with completion
+                    Task {
+                        do {
+                            // Fetch data from the cover URL
+                            let (data, _) = try await URLSession.shared.data(from: url)
+                            
+                            // Convert data to UIImage
+                            if let image = UIImage(data: data) {
+                                // Update UI on the main thread
+                                DispatchQueue.main.async {
+                                    cell.cover.image = image
+                                }
+                            } else {
+                                // Fallback image if decoding fails
+                                DispatchQueue.main.async {
+                                    cell.cover.image = UIImage(named: "book")
+                                }
+                            }
+                        } catch {
+                            // Fallback if request fails
+                            DispatchQueue.main.async {
+                                cell.cover.image = UIImage(named: "book")
+                            }
+                        }
+                    }
+                } else {
+                    // If URL is invalid, just use a fallback
+                    cell.cover.image = UIImage(named: "book")
+                }
+            }
+            
+            return cell
         }
-        
-        return cell
-    }
     
     // MARK: - CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
