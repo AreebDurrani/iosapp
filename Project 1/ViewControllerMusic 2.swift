@@ -13,6 +13,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     var audioPlayer: AVAudioPlayer?
+    var player: AVPlayer?
     var currentTrackIndex: (section: Int, item: Int)?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +75,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(fetchedTracks.count)
         return fetchedTracks.count
-        return songsAndAudioFiles[section].count
+        //return songsAndAudioFiles[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,23 +102,20 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentTrackIndex = (section: indexPath.section, item: indexPath.item)
-        let audioFileName = songsAndAudioFiles[indexPath.section][indexPath.item].fileName
-        playAudio(fileName: audioFileName)
+        let previewURL = fetchedTracks[indexPath.item].previewURL
+        playAudio(withURL: previewURL)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
-    private func playAudio(fileName: String) {
-        guard let audioDataAsset = NSDataAsset(name: fileName) else {
-            print("Audio asset not found: \(fileName)")
+    private func playAudio(withURL urlString: String) {
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
             return
         }
-
-        do {
-            audioPlayer = try AVAudioPlayer(data: audioDataAsset.data)
-            audioPlayer?.play()
-        } catch {
-            print("Error playing audio: \(error.localizedDescription)")
-        }
+        
+        // Create the player with the URL and start playback
+        player = AVPlayer(url: url)
+        player?.play()
     }
 
     private func setupToolbarActions() {
@@ -146,8 +144,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     @objc private func playPauseAudio() {
-        guard let audioPlayer = audioPlayer else { return }
-        if audioPlayer.isPlaying {
+        guard let audioPlayer = player else { return }
+        if player?.timeControlStatus == .playing {
             audioPlayer.pause()
         } else {
             audioPlayer.play()
@@ -155,8 +153,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     @objc private func stopAudio() {
-        audioPlayer?.stop()
-        audioPlayer?.currentTime = 0
+        player?.pause()
+        //player?.currentTime = 0
     }
 
     @objc private func nextTrack() {
@@ -164,7 +162,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
-        playAudio(fileName: audioFileName)
+        //playAudio(withURL: previewURL)
     }
 
     @objc private func previousTrack() {
@@ -172,7 +170,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
-        playAudio(fileName: audioFileName)
+        //playAudio(withURL: previewURL)
     }
     
     @IBAction func logoutPressed(_ sender: Any) {

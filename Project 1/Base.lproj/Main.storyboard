@@ -661,10 +661,10 @@
             </objects>
             <point key="canvasLocation" x="-3650" y="-4"/>
         </scene>
-        <!--View Controller Music-->
+        <!--View Controller Music2-->
         <scene sceneID="XsH-zc-Eiq">
             <objects>
-                <viewController id="TNF-N8-cYl" customClass="ViewControllerMusic" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TNF-N8-cYl" customClass="ViewControllerMusic2" customModule="Project_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A7z-4o-b7j">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
