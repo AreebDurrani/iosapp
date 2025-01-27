@@ -14,7 +14,7 @@ class QuizCarouselCell: UICollectionViewCell {
     @IBOutlet weak var quizTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        quizImg.layer.cornerRadius = 10
+        quizImg.layer.cornerRadius = 5
         // Disable autoresizing masks to use Auto Layout
         quizImg.translatesAutoresizingMaskIntoConstraints = false
 

@@ -707,6 +707,63 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-5u-E5u">
+                                <rect key="frame" x="76" y="677" width="240" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se7-w4-H5t" userLabel="playButton">
+                                        <rect key="frame" x="72" y="18" width="44" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="playButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="Pxh-hr-iXc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-4i-NJi" userLabel="pauseButton">
+                                        <rect key="frame" x="74" y="18" width="42" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pause.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="pauseButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="5Js-Y8-1vh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8C-M8-xwM" userLabel="forwardButton">
+                                        <rect key="frame" x="168" y="19" width="56" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="uAM-nx-VoP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-bS-FVA" userLabel="backButton">
+                                        <rect key="frame" x="8" y="19" width="56" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="M9J-GY-Jlf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvq-4j-9uo" userLabel="stopButton">
+                                        <rect key="frame" x="119" y="19" width="47" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="stop.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="stopButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="jTi-1u-dGI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.19287612757731953" green="0.19287612757731953" blue="0.19287612757731953" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFY-wo-cz3">
                                 <rect key="frame" x="16" y="122" width="361" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -737,8 +794,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backwardButton" destination="qbs-bS-FVA" id="fds-tV-Tqz"/>
                         <outlet property="collectionView" destination="r3D-H0-PGK" id="q79-D1-Fuv"/>
+                        <outlet property="forwardButton" destination="W8C-M8-xwM" id="Jc1-Po-kW1"/>
+                        <outlet property="pauseButton" destination="SEK-4i-NJi" id="ogZ-wz-eXf"/>
+                        <outlet property="playButton" destination="se7-w4-H5t" id="6Qj-G2-MbE"/>
                         <outlet property="searchTextField" destination="dFY-wo-cz3" id="cF4-Be-dwa"/>
+                        <outlet property="stopButton" destination="fvq-4j-9uo" id="GZW-CK-qRZ"/>
+                        <outlet property="toolBarView" destination="LHu-5u-E5u" id="nNT-Nf-9vB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdp-4r-23k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1299,14 +1362,19 @@
         <segue reference="asg-HO-f0n"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="backward.fill" catalog="system" width="128" height="76"/>
         <image name="book" width="46.164962768554688" height="61.053825378417969"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="forward.fill" catalog="system" width="128" height="76"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="music" width="90.178749084472656" height="90.178749084472656"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="note" width="81.713752746582031" height="81.910629272460938"/>
+        <image name="pause.fill" catalog="system" width="114" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
+        <image name="stop.fill" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
