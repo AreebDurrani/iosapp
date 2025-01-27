@@ -9,8 +9,8 @@ struct Track {
 
 func fetchRockTracksWithPreview(completion: @escaping ([Track]) -> Void) {
     let searchQuery = "rock"
-    // Adding the limit parameter to the search query to get only 10 results
-    let urlString = "https://api.deezer.com/search?q=\(searchQuery)"
+    //let urlString = "https://api.deezer.com/search?q=\(searchQuery)"
+    let urlString = "https://api.deezer.com/chart&limit=20"
     guard let url = URL(string: urlString) else {
         print("Invalid URL")
         return
@@ -29,7 +29,8 @@ func fetchRockTracksWithPreview(completion: @escaping ([Track]) -> Void) {
 
         do {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-               let tracks = json["data"] as? [[String: Any]] {
+               let tracksData = json["tracks"] as? [String: Any],
+                let tracks = tracksData["data"] as? [[String: Any]] {
                 
                 // Filter tracks to only include those with a preview URL and limit the result to 10
                 let tracksWithPreview = tracks.compactMap { track -> Track? in

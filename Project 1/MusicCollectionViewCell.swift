@@ -19,6 +19,7 @@ class MusicCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
+        songImage.layer.cornerRadius = 10
         songImage.translatesAutoresizingMaskIntoConstraints = false
         songName.translatesAutoresizingMaskIntoConstraints = false
             // Set constraints for the image view

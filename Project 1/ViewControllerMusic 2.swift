@@ -10,6 +10,13 @@ import AVFoundation
 
 class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var toolBarView: UIView!
+    
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     var audioPlayer: AVAudioPlayer?
@@ -17,6 +24,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     var currentTrackIndex: (section: Int, item: Int)?
     override func viewDidLoad() {
         super.viewDidLoad()
+        disableToolBar()
+        setUpToolBarView()
         fetchTracks {
                 // Once fetchTracks finishes, reload the collection view with the fetched data
             DispatchQueue.main.async {
@@ -95,7 +104,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
                 }
             }
         }
-        cell.songImage.image = UIImage(named: "music")
+        //cell.songImage.image = UIImage(named: "music")
         cell.songName.text = fetchedTracks[indexPath.item].title
         return cell
     }
@@ -104,6 +113,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         currentTrackIndex = (section: indexPath.section, item: indexPath.item)
         let previewURL = fetchedTracks[indexPath.item].previewURL
         playAudio(withURL: previewURL)
+        enableToolBar()
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
@@ -138,9 +148,9 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let flexibleSpace = UIBarButtonItem.flexibleSpace()
         toolbarItems = [rewindButton, flexibleSpace, playButton, flexibleSpace, stopButton, flexibleSpace, fastForwardButton]
         navigationController?.toolbar.barTintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        navigationController?.toolbar.tintColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
+        navigationController?.toolbar.tintColor = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 1)
         navigationController?.toolbar.isTranslucent = false
-        navigationController?.isToolbarHidden = false
+        navigationController?.isToolbarHidden = true
     }
 
     @objc private func playPauseAudio() {
@@ -162,7 +172,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
-        //playAudio(withURL: previewURL)
+        let previewURL = fetchedTracks[nextItem].previewURL
+        playAudio(withURL: previewURL)
     }
 
     @objc private func previousTrack() {
@@ -170,7 +181,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
-        //playAudio(withURL: previewURL)
+        let previewURL = fetchedTracks[previousItem].previewURL
+        playAudio(withURL: previewURL)
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
@@ -180,6 +192,27 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBAction func textfieldChanged(_ sender: Any) {
         handleSearch()
+    }
+    
+    @IBAction func playButtonPressed(_ sender: Any) {
+        playButtonPressed()
+    }
+    
+    @IBAction func pauseButtonPressed(_ sender: Any) {
+        pauseButtonPressed()
+    }
+    
+    @IBAction func forwardButtonPressed(_ sender: Any) {
+        nextSong()
+    }
+    
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        previousSong()
+    }
+    
+    @IBAction func stopButtonPressed(_ sender: Any) {
+        stopSong()
     }
     
 }
@@ -212,6 +245,76 @@ extension ViewControllerMusic2 {
             completion()
         }
         
+    }
+}
+
+extension ViewControllerMusic2 {
+    func disableToolBar() {
+        playButton.isHidden = true
+        pauseButton.isHidden = true
+        forwardButton.isHidden = true
+        backwardButton.isHidden = true
+        toolBarView.isHidden = true
+        stopButton.isHidden = true
+    }
+    
+    func enableToolBar() {
+        pauseButton.isHidden = false
+        forwardButton.isHidden = false
+        backwardButton.isHidden = false
+        toolBarView.isHidden = false
+        stopButton.isHidden = false
+    }
+    
+    func pauseButtonPressed() {
+        pauseButton.isHidden = true
+        playButton.isHidden = false
+        guard let audioPlayer = player else { return }
+        if player?.timeControlStatus == .playing {
+            audioPlayer.pause()
+        } else {
+            audioPlayer.play()
+        }
+    }
+    
+    func playButtonPressed() {
+        pauseButton.isHidden = false
+        playButton.isHidden = true
+        guard let audioPlayer = player else { return }
+        if player?.timeControlStatus == .playing {
+            audioPlayer.pause()
+        } else {
+            audioPlayer.play()
+        }
+    }
+    
+    func nextSong(){
+        guard let currentTrackIndex = currentTrackIndex else { return }
+        let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
+        self.currentTrackIndex = (currentTrackIndex.section, nextItem)
+        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
+        let previewURL = fetchedTracks[nextItem].previewURL
+        playAudio(withURL: previewURL)
+    }
+    
+    func previousSong(){
+        guard let currentTrackIndex = currentTrackIndex else { return }
+        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
+        self.currentTrackIndex = (currentTrackIndex.section, previousItem)
+        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
+        let previewURL = fetchedTracks[previousItem].previewURL
+        playAudio(withURL: previewURL)
+    }
+    
+    func setUpToolBarView(){
+        toolBarView.layer.cornerRadius = 5
+        toolBarView.layer.masksToBounds = true
+    }
+    
+    func stopSong() {
+        player?.pause()
+        player?.seek(to: CMTime.zero)
+        disableToolBar()
     }
 }
 
