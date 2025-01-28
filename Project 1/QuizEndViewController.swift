@@ -20,6 +20,7 @@ class QuizEndViewController: UIViewController {
         print(score)
         scoreLabel.text! = "\(score!)/5 questions"
         tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         returnButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }

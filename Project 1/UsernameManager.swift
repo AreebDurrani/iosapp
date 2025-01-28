@@ -10,7 +10,7 @@ import Foundation
 class UsernameManager {
     static let shared = UsernameManager()
     
-    var username : String?
+    var userFullName : String?
     
     private init(){}
 }

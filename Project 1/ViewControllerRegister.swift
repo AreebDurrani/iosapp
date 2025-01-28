@@ -15,25 +15,25 @@ class ViewControllerRegister: UIViewController {
     @IBOutlet weak var reenterPassTextField: UITextField!
     
     @IBAction func registerPressed(_ sender: Any) {
-        checkIfFullNameEmpty()
-        validateTextfields()
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
-
-        // Save the Account to Core Data
-        saveAccount(username: username, password: password)
-        //Store username into singleton for display
-        UsernameManager.shared.username = username
-        print("User registered: \(username)")
-        
-        // Navigate to MainTabController
-        /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
-        
-        self.navigationController?.setViewControllers([vc], animated: true)*/
-        self.performSegue(withIdentifier: "loginSegue", sender: self)
+        if validateTextfields(){
+            let username = usernameTextField.text!
+            let password = passwordTextField.text!
+            
+            // Save the Account to Core Data
+            saveAccount(username: username, password: password, fullname: fullNameTextField.text!, mobileNum: mobileNumberTextField.text!)
+            //Store username into singleton for display
+            UsernameManager.shared.userFullName = fullNameTextField.text!
+            print("User registered: \(username)")
+            
+            // Navigate to MainTabController
+            /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+             
+             self.navigationController?.setViewControllers([vc], animated: true)*/
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
     }
 
-    private func saveAccount(username: String, password: String) {
+    private func saveAccount(username: String, password: String, fullname: String, mobileNum: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Could not get AppDelegate")
             return
@@ -45,6 +45,8 @@ class ViewControllerRegister: UIViewController {
         let account = NSEntityDescription.insertNewObject(forEntityName: "Account", into: context)
         account.setValue(username, forKey: "username")
         account.setValue(password, forKey: "password")
+        account.setValue(fullname, forKey: "fullname")
+        account.setValue(mobileNum, forKey: "mobileNumber")
         
         do {
             try context.save()
@@ -79,6 +81,40 @@ extension ViewControllerRegister {
         mobileNumberTextField.layer.cornerRadius = 5.0
         mobileNumberTextField.frame.size.height = 40
     }
+    
+    func setFullnameBorderRed(){
+        setAllBordersGray()
+        fullNameTextField.layer.borderColor = UIColor.red.cgColor
+    }
+    
+    func setUserIdBorderRed(){
+        setAllBordersGray()
+        usernameTextField.layer.borderColor = UIColor.red.cgColor
+    }
+    
+    func setPasswordBorderRed(){
+        setAllBordersGray()
+        passwordTextField.layer.borderColor = UIColor.red.cgColor
+    }
+    
+    func setReenterBorderRed(){
+        setAllBordersGray()
+        reenterPassTextField.layer.borderColor = UIColor.red.cgColor
+    }
+    
+    func setMobileBorderRed(){
+        setAllBordersGray()
+        mobileNumberTextField.layer.borderColor = UIColor.red.cgColor
+    }
+    
+    func setAllBordersGray(){
+        usernameTextField.layer.borderColor = UIColor.gray.cgColor
+        passwordTextField.layer.borderColor = UIColor.gray.cgColor
+        reenterPassTextField.layer.borderColor = UIColor.gray.cgColor
+        fullNameTextField.layer.borderColor = UIColor.gray.cgColor
+        mobileNumberTextField.layer.borderColor = UIColor.gray.cgColor
+    }
+    
 }
 //Get user to see if it exists
 extension ViewControllerRegister {
@@ -105,7 +141,8 @@ extension ViewControllerRegister {
 //For text field validation
 extension ViewControllerRegister {
     
-    func checkIfFullNameEmpty() {
+    
+    func validateTextfields() -> Bool {
         guard let fullName = fullNameTextField.text, !fullName.isEmpty else {
             print("Please enter your name")
             let alertController = UIAlertController(title: "Register Failed",
@@ -114,31 +151,43 @@ extension ViewControllerRegister {
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setFullnameBorderRed()
+            return false
         }
-    }
-    
-    func validateTextfields() {
-        guard let username = usernameTextField.text, !username.isEmpty,
-              let password = passwordTextField.text, !password.isEmpty else {
+        
+        guard let username = usernameTextField.text, !username.isEmpty else{
             print("Username or password is empty")
             let alertController = UIAlertController(title: "Register Failed",
-                                                    message: "Please enter email and password.",
+                                                    message: "Please enter email.",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setUserIdBorderRed()
+            return false
         }
+        
         if !username.hasSuffix("@gmail.com") {
-            print("Please re-enter password")
             let alertController = UIAlertController(title: "Register Failed",
                                                     message: "Username must be a valid email!",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setUserIdBorderRed()
+            return false
+        }
+        
+        guard let password = passwordTextField.text, !password.isEmpty else{
+            print("Username or password is empty")
+            let alertController = UIAlertController(title: "Register Failed",
+                                                    message: "Please enter password.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            setPasswordBorderRed()
+            return false
         }
         
         if userExists(username: username){
@@ -148,7 +197,8 @@ extension ViewControllerRegister {
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setUserIdBorderRed()
+            return false
         }
         
         guard let reenteredPass = reenterPassTextField.text, !reenteredPass.isEmpty else {
@@ -159,7 +209,8 @@ extension ViewControllerRegister {
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setReenterBorderRed()
+            return false
         }
         
         
@@ -171,18 +222,21 @@ extension ViewControllerRegister {
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+            setReenterBorderRed()
+            return false
         }
         
         guard let mobileNumber = mobileNumberTextField.text, !mobileNumber.isEmpty else {
-            print("Please enter your name")
             let alertController = UIAlertController(title: "Register Failed",
                                                     message: "Please enter your mobile number.",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
-            return
+            setMobileBorderRed()
+            return false
         }
+        return true
     }
     
 }
