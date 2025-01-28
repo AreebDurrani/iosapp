@@ -36,7 +36,7 @@ class ViewControllerLogin: UIViewController {
                 print("Login successful")
             
                 handleRememberMe(rememberSwitch: rememberMeSwitch)
-                UsernameManager.shared.username = usernameInput
+                //UsernameManager.shared.userFullName = usernameInput
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
                 let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
                 feedbackGenerator.impactOccurred()
@@ -82,6 +82,9 @@ class ViewControllerLogin: UIViewController {
         do {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let accounts = try context.fetch(fetchRequest)
+            if !accounts.isEmpty{
+                UsernameManager.shared.userFullName = accounts[0].fullname!
+            }
             return !accounts.isEmpty
         } catch {
             print("Error validating login: \(error.localizedDescription)")
@@ -102,6 +105,7 @@ extension ViewControllerLogin {
         passwordTextField.frame.size.height = 40
         usernameTextField.layer.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0).cgColor
     }
+    
 }
 
 //handle keychain remember me

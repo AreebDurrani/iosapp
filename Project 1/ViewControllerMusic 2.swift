@@ -27,10 +27,9 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         disableToolBar()
         setUpToolBarView()
         fetchTracks {
-                // Once fetchTracks finishes, reload the collection view with the fetched data
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            self.collectionView.reloadData()
+        }
         }
         navigationItem.titleView = createUsernameLabel().customView
         if let navigationController = self.navigationController {
@@ -56,7 +55,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         ]
     ]
     
-    let defaultSongData: [[(title: String, fileName: String)]] = [
+    /*let defaultSongData: [[(title: String, fileName: String)]] = [
         [
             ("Moonlight Sonata", "moonlight_sonata"),
             ("Test Song 1", "test_song_1"),
@@ -64,7 +63,9 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
             ("Test Song 3", "test_song_3"),
             ("Test Song 4", "test_song_4")
         ]
-    ]
+    ]*/
+    
+    var defaultSongData: [Track] = []
     
     var fetchedTracks: [Track] = []
 
@@ -82,7 +83,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(fetchedTracks.count)
+        //print(fetchedTracks.count)
         return fetchedTracks.count
         //return songsAndAudioFiles[section].count
     }
@@ -224,11 +225,11 @@ extension ViewControllerMusic2 {
     
     func handleSearch() {
         if searchTextField.text!.isEmpty{
-            songsAndAudioFiles = defaultSongData
+            fetchedTracks = defaultSongData
         }
         else{
             print(searchTextField.text!)
-            songsAndAudioFiles[0] = defaultSongData[0].filter{$0.0.lowercased().hasPrefix(searchTextField.text!.lowercased())}
+            fetchedTracks = defaultSongData.filter{$0.title.lowercased().hasPrefix(searchTextField.text!.lowercased())}
         }
         collectionView.reloadData()
     }
@@ -240,7 +241,8 @@ extension ViewControllerMusic2 {
         fetchRockTracksWithPreview { tracks in
             for track in tracks {
                 self.fetchedTracks.append(track)
-                print("Track: \(track.title), Artist: \(track.artist), Preview URL: \(track.previewURL)")
+                self.defaultSongData.append(track)
+                //print("Track: \(track.title), Artist: \(track.artist), Preview URL: \(track.previewURL)")
             }
             completion()
         }
@@ -259,6 +261,7 @@ extension ViewControllerMusic2 {
     }
     
     func enableToolBar() {
+        playButton.isHidden = true
         pauseButton.isHidden = false
         forwardButton.isHidden = false
         backwardButton.isHidden = false
@@ -307,7 +310,7 @@ extension ViewControllerMusic2 {
     }
     
     func setUpToolBarView(){
-        toolBarView.layer.cornerRadius = 5
+        toolBarView.layer.cornerRadius = 10
         toolBarView.layer.masksToBounds = true
     }
     

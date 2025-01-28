@@ -28,6 +28,13 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         disableAddView()
         setUpOverlayView()
         navigationItem.titleView = createUsernameLabel().customView
+        if let navigationController = self.navigationController {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground() // Prevents transparency
+            appearance.backgroundColor = UIColor.black // Set your desired background color
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+        }
         collectionView.delegate = self
         collectionView.dataSource = self
         //let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
@@ -35,7 +42,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
         //addNoteButton.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
         self.navigationItem.leftBarButtonItem = addNoteButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
         fetchNotes()
     }
 
@@ -53,7 +60,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(notes.count)
+        //print(notes.count)
         return notes.count
     }
 
@@ -112,7 +119,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
         let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
         do {
-            notes = try context.fetch(fetchRequest)
+            notes = try context.fetch(fetchRequest).reversed()
             collectionView.reloadData()
         } catch {
             print("Error fetching notes: \(error)")
@@ -142,7 +149,8 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
         do {
             try context.save()
-            notes.append(newNote)
+            //notes.append(newNote, at)
+            notes.insert(newNote, at: 0)
             collectionView.reloadData()
         } catch {
             print("Error saving note: \(error)")
