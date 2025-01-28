@@ -36,6 +36,7 @@ class ViewControllerBooks: UIViewController,
         
         // Configure initial layout
         configureCollectionViewLayout()
+        navigationItem.titleView = createUsernameLabel().customView
         
         // Customize the segmented control text color
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
