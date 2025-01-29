@@ -34,8 +34,8 @@ class BooksCollectionViewCell: UICollectionViewCell {
             // Set constraints for the label
             NSLayoutConstraint.activate([
                 title.topAnchor.constraint(equalTo: cover.bottomAnchor, constant: 8), // Space below the image
-                title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                //title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                //title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
                 title.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
                 title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // Optional
             ])

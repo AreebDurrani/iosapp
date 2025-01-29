@@ -37,10 +37,8 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         }
         collectionView.delegate = self
         collectionView.dataSource = self
-        //let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNote))
 
-        //addNoteButton.tintColor = UIColor(red: 221, green: 232, blue: 10, alpha: 1)
         self.navigationItem.leftBarButtonItem = addNoteButton
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
         fetchNotes()
@@ -66,10 +64,6 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "notesCell", for: indexPath) as! NotesCollectionViewCell
-        /*var contentConfiguration = UIListContentConfiguration.cell()
-        contentConfiguration.text = notes[indexPath.row].content
-        contentConfiguration.image = UIImage(named: "note")
-        cell.contentConfiguration = contentConfiguration*/
         cell.noteText.text = notes[indexPath.row].content
 
         // Add a long press gesture recognizer for deletion
@@ -82,17 +76,6 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
         selectedNote = note
-        /*let alert = UIAlertController(title: "Edit Note", message: "Update your note", preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.text = note.content
-        }
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
-            if let updatedText = alert.textFields?.first?.text, !updatedText.isEmpty {
-                self.updateNote(note: note, with: updatedText)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)*/
         enableEditView()
         setUpEditView(noteContent : note.content!)
     }

@@ -276,7 +276,7 @@ class ViewControllerBooks: UIViewController,
     
     private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 150)
+        layout.itemSize = CGSize(width: 150, height: 200)
         layout.minimumLineSpacing = 20
         layout.scrollDirection = .vertical
         

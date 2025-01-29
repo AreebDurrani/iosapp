@@ -40,28 +40,6 @@ class MusicCollectionViewCell: UICollectionViewCell {
                 songName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // Optional
             ])
         }
-    
-    /*override init(frame: CGRect) {
-            super.init(frame: frame)
-        songImage.translatesAutoresizingMaskIntoConstraints = false
-        songName.translatesAutoresizingMaskIntoConstraints = false
-            // Set constraints for the image view
-            NSLayoutConstraint.activate([
-                songImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-                songImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                songImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                //songImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-                songImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7) // Adjust height as needed
-            ])
-
-            // Set constraints for the label
-            NSLayoutConstraint.activate([
-                songName.topAnchor.constraint(equalTo: songImage.bottomAnchor, constant: 8), // Space below the image
-                songName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                songName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                songName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // Optional
-            ])
-        }*/
 
         required init?(coder: NSCoder) {
             super.init(coder: coder)
