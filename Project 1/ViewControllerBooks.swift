@@ -123,7 +123,7 @@ class ViewControllerBooks: UIViewController,
             
             for (genreName, booksArray) in booksByGenre {
                 let filteredArray = booksArray.filter {
-                    $0.title.lowercased().contains(query)
+                    $0.title.lowercased().hasPrefix(query)
                 }
                 newFiltered[genreName] = filteredArray
             }
