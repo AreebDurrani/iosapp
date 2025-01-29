@@ -708,11 +708,11 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-5u-E5u">
-                                <rect key="frame" x="76" y="677" width="240" height="72"/>
+                                <rect key="frame" x="76" y="664" width="240" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se7-w4-H5t" userLabel="playButton">
-                                        <rect key="frame" x="72" y="18" width="44" height="35"/>
+                                        <rect key="frame" x="72" y="30" width="44" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -722,7 +722,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-4i-NJi" userLabel="pauseButton">
-                                        <rect key="frame" x="74" y="18" width="42" height="35"/>
+                                        <rect key="frame" x="74" y="30" width="42" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -732,7 +732,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8C-M8-xwM" userLabel="forwardButton">
-                                        <rect key="frame" x="168" y="19" width="56" height="35"/>
+                                        <rect key="frame" x="168" y="31" width="56" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -742,7 +742,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-bS-FVA" userLabel="backButton">
-                                        <rect key="frame" x="8" y="19" width="56" height="35"/>
+                                        <rect key="frame" x="8" y="31" width="56" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -752,7 +752,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvq-4j-9uo" userLabel="stopButton">
-                                        <rect key="frame" x="119" y="19" width="47" height="35"/>
+                                        <rect key="frame" x="119" y="31" width="47" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -761,6 +761,10 @@
                                             <action selector="stopButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="jTi-1u-dGI"/>
                                         </connections>
                                     </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UUg-46-rgl">
+                                        <rect key="frame" x="61" y="4" width="118" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" red="0.19287612757731953" green="0.19287612757731953" blue="0.19287612757731953" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
@@ -800,6 +804,7 @@
                         <outlet property="pauseButton" destination="SEK-4i-NJi" id="ogZ-wz-eXf"/>
                         <outlet property="playButton" destination="se7-w4-H5t" id="6Qj-G2-MbE"/>
                         <outlet property="searchTextField" destination="dFY-wo-cz3" id="cF4-Be-dwa"/>
+                        <outlet property="songProgressView" destination="UUg-46-rgl" id="K3X-MX-HQt"/>
                         <outlet property="stopButton" destination="fvq-4j-9uo" id="GZW-CK-qRZ"/>
                         <outlet property="toolBarView" destination="LHu-5u-E5u" id="nNT-Nf-9vB"/>
                     </connections>

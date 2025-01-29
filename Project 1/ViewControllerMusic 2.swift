@@ -10,6 +10,7 @@ import AVFoundation
 
 class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var songProgressView: UISlider!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -33,6 +34,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         }
         navigationItem.titleView = createUsernameLabel().customView
         setNavigationBarOpaque()
+        setupSliderTarget()
+        configureProgressSlider()
         collectionView.delegate = self
         collectionView.dataSource = self
         configureCollectionViewLayout()
@@ -51,6 +54,10 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     var defaultSongData: [Track] = []
     
     var fetchedTracks: [Track] = []
+    
+    var timeObserverToken: Any?
+    
+    var isSliding = false
 
     private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -92,6 +99,60 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         playAudio(withURL: previewURL)
         enableToolBar()
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    private func setupSliderTarget() {
+            // Add target for value changes
+            songProgressView.addTarget(
+                self,
+                action: #selector(handleSliderChange(_:)),
+                for: .valueChanged
+            )
+        }
+        
+    @objc private func handleSliderChange(_ sender: UISlider) {
+        guard let player = player else { return }
+        
+        if sender.isTracking {
+            // User is actively dragging
+            isSliding = true
+        } else {
+            // User released the thumb
+            let duration = player.currentItem?.duration.seconds ?? 0
+            let seekTime = CMTime(
+                seconds: Double(sender.value) * duration,
+                preferredTimescale: 1000
+            )
+            player.seek(to: seekTime)
+            isSliding = false
+        }
+    }
+    
+    private func configureProgressSlider() {
+        // Create custom thumb image
+        let thumbSize: CGFloat = 12 // Diameter of the circle
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 20, height: 20))
+        
+        let thumbImage = renderer.image { ctx in
+            let circleFrame = CGRect(
+                x: (20 - thumbSize)/2,
+                y: (20 - thumbSize)/2,
+                width: thumbSize,
+                height: thumbSize
+            )
+            
+            // Customize the circle appearance
+            UIColor.white.setFill()
+            UIBezierPath(ovalIn: circleFrame).fill()
+        }
+        
+        // Set for both normal and highlighted states
+        songProgressView.setThumbImage(thumbImage, for: .normal)
+        songProgressView.setThumbImage(thumbImage, for: .highlighted)
+        
+        // Rest of your slider configuration
+        songProgressView.minimumTrackTintColor = .systemBlue
+        songProgressView.maximumTrackTintColor = .lightGray.withAlphaComponent(0.3)
     }
 
     func setNavigationBarOpaque() {
