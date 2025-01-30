@@ -10,7 +10,6 @@ import AVFoundation
 
 extension ViewControllerMusic2 {
     
-    // MARK: - Tool Bar Controls
     
     func disableToolBar() {
         playButton.isHidden = true
@@ -19,6 +18,7 @@ extension ViewControllerMusic2 {
         backwardButton.isHidden = true
         toolBarView.isHidden = true
         stopButton.isHidden = true
+        loopButton.isHidden = true
     }
     
     func enableToolBar() {
@@ -28,9 +28,8 @@ extension ViewControllerMusic2 {
         backwardButton.isHidden = false
         toolBarView.isHidden = false
         stopButton.isHidden = false
+        loopButton.isHidden = false
     }
-    
-    // MARK: - Playback Controls
     
     func pauseButtonPressed() {
         pauseButton.isHidden = true
@@ -54,86 +53,43 @@ extension ViewControllerMusic2 {
         }
     }
     
-    func nextSong() {
+    func nextSong(){
         guard let currentTrackIndex = currentTrackIndex else { return }
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
-        
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
         let previewURL = fetchedTracks[nextItem].previewURL
-        
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
     }
     
-    func previousSong() {
+    func previousSong(){
         guard let currentTrackIndex = currentTrackIndex else { return }
-        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count)
-                            % songsAndAudioFiles[currentTrackIndex.section].count
+        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
-        
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
         let previewURL = fetchedTracks[previousItem].previewURL
-        
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
     }
     
-    func setUpToolBarView() {
+    func switchLoop(_ sender: UIButton){
+        if loopSong == true{
+            sender.tintColor = UIColor.gray
+            loopSong = false
+        }
+        else{
+            sender.tintColor = UIColor(red: 233/255, green: 215/255, blue: 114/255, alpha: 1)
+            loopSong = true
+        }
+    }
+    
+    func setUpToolBarView(){
         toolBarView.layer.cornerRadius = 10
         toolBarView.layer.masksToBounds = true
     }
-    
-    // MARK: - Looping
-    
-    /// Toggles the looping state
-    func loopButtonPressed() {
-        looping.toggle()
-    }
-    
-    /// Called when the current AVPlayerItem finishes playing
-    @objc func didFinishPlaying(_ notification: Notification) {
-        guard
-            let currentItem = notification.object as? AVPlayerItem,
-            let playerItem = player?.currentItem,
-            currentItem == playerItem
-        else {
-            return
-        }
-        
-        if looping {
-            // Loop the current track
-            player?.seek(to: .zero)
-            player?.play()
-        } else {
-            // If not looping, we can stop or go to nextSong(), etc.
-            stopSong()
-            // Or for auto-next:
-            // nextSong()
-        }
-    }
-    
-    /// Enables an observer to detect when a track finishes
-    private func enableLoopingObserver(for playerItem: AVPlayerItem) {
-        // Remove any existing observer to avoid duplicates
-        NotificationCenter.default.removeObserver(
-            self,
-            name: .AVPlayerItemDidPlayToEndTime,
-            object: nil
-        )
-        
-        // Add observer for "end of track" notification
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didFinishPlaying(_:)),
-            name: .AVPlayerItemDidPlayToEndTime,
-            object: playerItem
-        )
-    }
-    
-    // MARK: - Audio Playback
     
     func playAudio(withURL urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -141,31 +97,64 @@ extension ViewControllerMusic2 {
             return
         }
         
-        // Create AVPlayerItem and AVPlayer
-        let playerItem = AVPlayerItem(url: url)
-        player = AVPlayer(playerItem: playerItem)
+        // Cleanup previous observers
+        removePeriodicTimeObserver()
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
         
-        // Set up loop observation
-        enableLoopingObserver(for: playerItem)
+        // Create new player
+        player = AVPlayer(url: url)
         
-        // Start playback
+        // Setup observers
+        addPeriodicTimeObserver()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerDidFinishPlaying),
+                                               name: .AVPlayerItemDidPlayToEndTime,
+                                               object: player?.currentItem)
+        
+        // Reset progress
+        songProgressView.value = 0.0
         player?.play()
     }
     
     func stopSong() {
         player?.pause()
         player?.seek(to: CMTime.zero)
+        songProgressView.value = 0.0
         disableToolBar()
-        
-        // Optionally remove observer if we're done with this player
-        if let currentItem = player?.currentItem {
-            NotificationCenter.default.removeObserver(
-                self,
-                name: .AVPlayerItemDidPlayToEndTime,
-                object: currentItem
-            )
+    }
+    
+    private func addPeriodicTimeObserver() {
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserverToken = player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            guard let self = self,
+                  let player = self.player,
+                  !self.isSliding else { return }
+            
+            let currentTime = time.seconds
+            guard let duration = player.currentItem?.duration.seconds,
+                  duration > 0 else { return }
+            
+            self.songProgressView.value = Float(currentTime / duration)
+        }
+    }
+
+    private func removePeriodicTimeObserver() {
+        if let token = timeObserverToken {
+            player?.removeTimeObserver(token)
+            timeObserverToken = nil
+        }
+    }
+
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        songProgressView.value = 1.0
+        if loopSong{
+            player?.seek(to: CMTime.zero)
+            songProgressView.value = 0.0
+            player?.play()
+        }
+        else{
+            nextSong()
         }
     }
     
-} // end of extension
-
+}
