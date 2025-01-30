@@ -40,7 +40,7 @@ class ViewControllerBooks: UIViewController,
         
         // Customize the segmented control text color
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor(named: "textColor") ?? .white
         ]
         genreSegment.setTitleTextAttributes(normalTextAttributes, for: .normal)
         

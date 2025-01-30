@@ -159,7 +159,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         if let navigationController = self.navigationController {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor.black
+            appearance.backgroundColor = UIColor(named: "BackgroundColor")
             navigationController.navigationBar.standardAppearance = appearance
             navigationController.navigationBar.scrollEdgeAppearance = appearance
         }

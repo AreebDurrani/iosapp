@@ -94,14 +94,14 @@ class QuizQuestionViewController: UIViewController {
         setAllButtonsGray()
         setAllButtonsDisabled()
         pressedButton.backgroundColor = UIColor.red
-        correctButton.backgroundColor = UIColor(red: 221/225, green: 232/225, blue: 10/225, alpha: 1)
+        correctButton.backgroundColor = UIColor(named: "greenbuttons")
         nextButton.isHidden = false
     }
     
     func handleCorrect(_ pressedButton : UIButton){
         setAllButtonsGray()
         setAllButtonsDisabled()
-        pressedButton.backgroundColor = UIColor(red: 221/225, green: 232/225, blue: 10/225, alpha: 1)
+        pressedButton.backgroundColor = UIColor(named: "greenbuttons")
         nextButton.isHidden = false
         points += 1
     }
@@ -146,10 +146,14 @@ extension QuizQuestionViewController {
     }
     
     func setAllButtonsGreen(){
-        buttonA.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
-        buttonB.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
-        buttonC.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
-        buttonD.backgroundColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
+        guard let greenColor = UIColor(named: "greenbuttons") else {
+            print("ERROR: 'greenbuttons' color not found in assets!")
+            return
+        }
+        buttonA.backgroundColor = UIColor(named: "greenbuttons")
+        buttonB.backgroundColor = UIColor(named: "greenbuttons")
+        buttonC.backgroundColor = UIColor(named: "greenbuttons")
+        buttonD.backgroundColor = UIColor(named: "greenbuttons")
     }
     
     func setAllButtonsEnabled(){
