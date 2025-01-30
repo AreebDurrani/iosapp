@@ -15,6 +15,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var toolBarView: UIView!
     
+    @IBOutlet weak var loopButton: UIButton!
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
@@ -22,6 +23,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     var audioPlayer: AVAudioPlayer?
     var player: AVPlayer?
     var currentTrackIndex: (section: Int, item: Int)?
+    var looping : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         disableToolBar()
@@ -135,6 +138,9 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         stopSong()
     }
     
+    @IBAction func loopButtonPressed(_ sender: Any) {
+        loopButtonPressed()
+    }
 }
 
 

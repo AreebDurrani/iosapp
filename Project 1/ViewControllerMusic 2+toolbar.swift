@@ -10,6 +10,8 @@ import AVFoundation
 
 extension ViewControllerMusic2 {
     
+    // MARK: - Tool Bar Controls
+    
     func disableToolBar() {
         playButton.isHidden = true
         pauseButton.isHidden = true
@@ -27,6 +29,8 @@ extension ViewControllerMusic2 {
         toolBarView.isHidden = false
         stopButton.isHidden = false
     }
+    
+    // MARK: - Playback Controls
     
     func pauseButtonPressed() {
         pauseButton.isHidden = true
@@ -50,32 +54,86 @@ extension ViewControllerMusic2 {
         }
     }
     
-    func nextSong(){
+    func nextSong() {
         guard let currentTrackIndex = currentTrackIndex else { return }
         let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
+        
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
         let previewURL = fetchedTracks[nextItem].previewURL
+        
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
     }
     
-    func previousSong(){
+    func previousSong() {
         guard let currentTrackIndex = currentTrackIndex else { return }
-        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
+        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count)
+                            % songsAndAudioFiles[currentTrackIndex.section].count
         self.currentTrackIndex = (currentTrackIndex.section, previousItem)
+        
         let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
         let previewURL = fetchedTracks[previousItem].previewURL
+        
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
     }
     
-    func setUpToolBarView(){
+    func setUpToolBarView() {
         toolBarView.layer.cornerRadius = 10
         toolBarView.layer.masksToBounds = true
     }
+    
+    // MARK: - Looping
+    
+    /// Toggles the looping state
+    func loopButtonPressed() {
+        looping.toggle()
+    }
+    
+    /// Called when the current AVPlayerItem finishes playing
+    @objc func didFinishPlaying(_ notification: Notification) {
+        guard
+            let currentItem = notification.object as? AVPlayerItem,
+            let playerItem = player?.currentItem,
+            currentItem == playerItem
+        else {
+            return
+        }
+        
+        if looping {
+            // Loop the current track
+            player?.seek(to: .zero)
+            player?.play()
+        } else {
+            // If not looping, we can stop or go to nextSong(), etc.
+            stopSong()
+            // Or for auto-next:
+            // nextSong()
+        }
+    }
+    
+    /// Enables an observer to detect when a track finishes
+    private func enableLoopingObserver(for playerItem: AVPlayerItem) {
+        // Remove any existing observer to avoid duplicates
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .AVPlayerItemDidPlayToEndTime,
+            object: nil
+        )
+        
+        // Add observer for "end of track" notification
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didFinishPlaying(_:)),
+            name: .AVPlayerItemDidPlayToEndTime,
+            object: playerItem
+        )
+    }
+    
+    // MARK: - Audio Playback
     
     func playAudio(withURL urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -83,8 +141,14 @@ extension ViewControllerMusic2 {
             return
         }
         
-        // Create the player with the URL and start playback
-        player = AVPlayer(url: url)
+        // Create AVPlayerItem and AVPlayer
+        let playerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
+        
+        // Set up loop observation
+        enableLoopingObserver(for: playerItem)
+        
+        // Start playback
         player?.play()
     }
     
@@ -92,8 +156,16 @@ extension ViewControllerMusic2 {
         player?.pause()
         player?.seek(to: CMTime.zero)
         disableToolBar()
+        
+        // Optionally remove observer if we're done with this player
+        if let currentItem = player?.currentItem {
+            NotificationCenter.default.removeObserver(
+                self,
+                name: .AVPlayerItemDidPlayToEndTime,
+                object: currentItem
+            )
+        }
     }
     
+} // end of extension
 
-    
-}

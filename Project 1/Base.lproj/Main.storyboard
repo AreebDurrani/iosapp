@@ -711,6 +711,16 @@
                                 <rect key="frame" x="76" y="677" width="240" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G78-Fz-rlM" userLabel="loopButton">
+                                        <rect key="frame" x="107" y="18" width="47" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="repeat" catalog="system"/>
+                                        <connections>
+                                            <action selector="loopButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="SlP-OJ-t4h"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se7-w4-H5t" userLabel="playButton">
                                         <rect key="frame" x="72" y="18" width="44" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -722,7 +732,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-4i-NJi" userLabel="pauseButton">
-                                        <rect key="frame" x="74" y="18" width="42" height="35"/>
+                                        <rect key="frame" x="57" y="19" width="42" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -732,7 +742,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8C-M8-xwM" userLabel="forwardButton">
-                                        <rect key="frame" x="168" y="19" width="56" height="35"/>
+                                        <rect key="frame" x="184" y="19" width="56" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -752,7 +762,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvq-4j-9uo" userLabel="stopButton">
-                                        <rect key="frame" x="119" y="19" width="47" height="35"/>
+                                        <rect key="frame" x="145" y="18" width="47" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -797,6 +807,7 @@
                         <outlet property="backwardButton" destination="qbs-bS-FVA" id="fds-tV-Tqz"/>
                         <outlet property="collectionView" destination="r3D-H0-PGK" id="q79-D1-Fuv"/>
                         <outlet property="forwardButton" destination="W8C-M8-xwM" id="Jc1-Po-kW1"/>
+                        <outlet property="loopButton" destination="G78-Fz-rlM" id="bC4-3V-luB"/>
                         <outlet property="pauseButton" destination="SEK-4i-NJi" id="ogZ-wz-eXf"/>
                         <outlet property="playButton" destination="se7-w4-H5t" id="6Qj-G2-MbE"/>
                         <outlet property="searchTextField" destination="dFY-wo-cz3" id="cF4-Be-dwa"/>
@@ -806,7 +817,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdp-4r-23k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1976.3358778625955" y="-366.19718309859155"/>
+            <point key="canvasLocation" x="-2019.0839694656488" y="-350"/>
         </scene>
         <!--Collection View Controller Music-->
         <scene sceneID="LMa-al-jqy">
@@ -1381,12 +1392,16 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
+        <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
