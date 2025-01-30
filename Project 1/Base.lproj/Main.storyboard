@@ -61,7 +61,7 @@
                                                     <rect key="frame" x="42" y="40" width="86" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1367,7 +1367,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XIF-Lo-0Bj"/>
+        <segue reference="wb1-Zg-umt"/>
         <segue reference="Che-OO-A0H"/>
     </inferredMetricsTieBreakers>
     <resources>
