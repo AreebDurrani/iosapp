@@ -31,7 +31,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         if let navigationController = self.navigationController {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground() // Prevents transparency
-            appearance.backgroundColor = UIColor.black // Set your desired background color
+            appearance.backgroundColor = UIColor(named: "BackgroundColor") // Set your desired background color
             navigationController.navigationBar.standardAppearance = appearance
             navigationController.navigationBar.scrollEdgeAppearance = appearance
         }
@@ -40,7 +40,7 @@ class ViewControllerNotes: UIViewController, UICollectionViewDataSource, UIColle
         let addNoteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newNote))
 
         self.navigationItem.leftBarButtonItem = addNoteButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 221/255, green: 232/255, blue: 10/255, alpha: 1)
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "greenbuttons")
         fetchNotes()
     }
 

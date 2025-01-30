@@ -40,7 +40,7 @@ class ViewControllerBooks: UIViewController,
         
         // Customize the segmented control text color
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor(named: "textColor") ?? .white
         ]
         genreSegment.setTitleTextAttributes(normalTextAttributes, for: .normal)
         
@@ -278,6 +278,7 @@ class ViewControllerBooks: UIViewController,
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 150, height: 200)
         layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 5
         layout.scrollDirection = .vertical
         
         booksCollectionView.setCollectionViewLayout(layout, animated: false)
