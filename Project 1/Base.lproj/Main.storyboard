@@ -707,7 +707,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se7-w4-H5t" userLabel="playButton">
-                                        <rect key="frame" x="72" y="30" width="44" height="35"/>
+                                        <rect key="frame" x="98" y="30" width="44" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -717,7 +717,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-4i-NJi" userLabel="pauseButton">
-                                        <rect key="frame" x="74" y="30" width="42" height="35"/>
+                                        <rect key="frame" x="100" y="30" width="42" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -726,18 +726,8 @@
                                             <action selector="pauseButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="5Js-Y8-1vh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8C-M8-xwM" userLabel="forwardButton">
-                                        <rect key="frame" x="168" y="31" width="56" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="forwardButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="uAM-nx-VoP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-bS-FVA" userLabel="backButton">
-                                        <rect key="frame" x="8" y="31" width="56" height="35"/>
+                                        <rect key="frame" x="8" y="30" width="56" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -747,7 +737,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvq-4j-9uo" userLabel="stopButton">
-                                        <rect key="frame" x="119" y="31" width="47" height="35"/>
+                                        <rect key="frame" x="56" y="30" width="47" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
@@ -760,6 +750,26 @@
                                         <rect key="frame" x="31" y="4" width="178" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RH5-87-1CF">
+                                        <rect key="frame" x="137" y="30" width="52" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="repeat" catalog="system"/>
+                                        <connections>
+                                            <action selector="loopButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="Imc-7f-deL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8C-M8-xwM" userLabel="forwardButton">
+                                        <rect key="frame" x="180" y="30" width="56" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.91296082739999995" green="0.84359958729999995" blue="0.4459133938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="TNF-N8-cYl" eventType="touchUpInside" id="uAM-nx-VoP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.19287612757731953" green="0.19287612757731953" blue="0.19287612757731953" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
@@ -798,6 +808,7 @@
                         <outlet property="backwardButton" destination="qbs-bS-FVA" id="fds-tV-Tqz"/>
                         <outlet property="collectionView" destination="r3D-H0-PGK" id="q79-D1-Fuv"/>
                         <outlet property="forwardButton" destination="W8C-M8-xwM" id="Jc1-Po-kW1"/>
+                        <outlet property="loopButton" destination="RH5-87-1CF" id="g94-K2-7ku"/>
                         <outlet property="pauseButton" destination="SEK-4i-NJi" id="ogZ-wz-eXf"/>
                         <outlet property="playButton" destination="se7-w4-H5t" id="6Qj-G2-MbE"/>
                         <outlet property="searchTextField" destination="dFY-wo-cz3" id="cF4-Be-dwa"/>
@@ -1367,7 +1378,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wb1-Zg-umt"/>
+        <segue reference="wx8-yg-pS5"/>
         <segue reference="Che-OO-A0H"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1383,15 +1394,16 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
+        <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
         <namedColor name="BackgroundColor">
-            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="greenbuttons">
             <color red="0.14901960784313725" green="0.92549019607843142" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.039000000804662704" green="0.039000000804662704" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

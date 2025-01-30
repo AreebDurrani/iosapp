@@ -18,6 +18,7 @@ extension ViewControllerMusic2 {
         backwardButton.isHidden = true
         toolBarView.isHidden = true
         stopButton.isHidden = true
+        loopButton.isHidden = true
     }
     
     func enableToolBar() {
@@ -27,6 +28,7 @@ extension ViewControllerMusic2 {
         backwardButton.isHidden = false
         toolBarView.isHidden = false
         stopButton.isHidden = false
+        loopButton.isHidden = false
     }
     
     func pauseButtonPressed() {
@@ -71,6 +73,17 @@ extension ViewControllerMusic2 {
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
+    }
+    
+    func switchLoop(_ sender: UIButton){
+        if loopSong == true{
+            sender.tintColor = UIColor.gray
+            loopSong = false
+        }
+        else{
+            sender.tintColor = UIColor(red: 233/255, green: 215/255, blue: 114/255, alpha: 1)
+            loopSong = true
+        }
     }
     
     func setUpToolBarView(){
@@ -134,7 +147,14 @@ extension ViewControllerMusic2 {
 
     @objc func playerDidFinishPlaying(note: NSNotification) {
         songProgressView.value = 1.0
-        nextSong()
+        if loopSong{
+            player?.seek(to: CMTime.zero)
+            songProgressView.value = 0.0
+            player?.play()
+        }
+        else{
+            nextSong()
+        }
     }
     
 }

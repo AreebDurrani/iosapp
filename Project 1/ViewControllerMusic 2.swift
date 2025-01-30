@@ -10,6 +10,7 @@ import AVFoundation
 
 class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var loopButton: UIButton!
     @IBOutlet weak var songProgressView: UISlider!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
@@ -39,6 +40,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.delegate = self
         collectionView.dataSource = self
         configureCollectionViewLayout()
+        loopButton.tintColor = UIColor.gray
     }
 
     var songsAndAudioFiles: [[(title: String, fileName: String)]] = [
@@ -58,6 +60,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
     var timeObserverToken: Any?
     
     var isSliding = false
+    
+    var loopSong = false
 
     private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -196,6 +200,9 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         stopSong()
     }
     
+    @IBAction func loopButtonPressed(_ sender: UIButton) {
+        switchLoop(sender)
+    }
 }
 
 
