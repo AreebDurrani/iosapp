@@ -7,7 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "NotesModel") // Use your model name
+        let container = NSPersistentContainer(name: "NotesModel")
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Core Data store failed to load: \(error)")
