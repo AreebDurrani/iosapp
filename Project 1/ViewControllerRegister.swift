@@ -23,6 +23,10 @@ class ViewControllerRegister: UIViewController {
             saveAccount(username: username, password: password, fullname: fullNameTextField.text!, mobileNum: mobileNumberTextField.text!)
             //Store username into singleton for display
             UsernameManager.shared.userFullName = fullNameTextField.text!
+            UsernameManager.shared.username = username
+            UsernameManager.shared.mountainPerfect = false
+            UsernameManager.shared.capitalPerfect = false
+            UsernameManager.shared.painterPerfect = false
             print("User registered: \(username)")
             
             // Navigate to MainTabController
@@ -47,6 +51,9 @@ class ViewControllerRegister: UIViewController {
         account.setValue(password, forKey: "password")
         account.setValue(fullname, forKey: "fullname")
         account.setValue(mobileNum, forKey: "mobileNumber")
+        account.setValue(false, forKey: "mountainPerfect")
+        account.setValue(false, forKey: "painterPerfect")
+        account.setValue(false, forKey: "capitalPerfect")
         
         do {
             try context.save()
@@ -125,7 +132,7 @@ extension ViewControllerRegister {
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
         
         // Add a predicate to filter by username
-        fetchRequest.predicate = NSPredicate(format: "username == %@", username)
+        fetchRequest.predicate = NSPredicate(format: "username == [c] %@", username)
         
         do {
             let results = try context.fetch(fetchRequest)
@@ -178,6 +185,17 @@ extension ViewControllerRegister {
             return false
         }
         
+        if userExists(username: username){
+            let alertController = UIAlertController(title: "Register Failed",
+                                                    message: "Username already exists!",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            setUserIdBorderRed()
+            return false
+        }
+        
         guard let password = passwordTextField.text, !password.isEmpty else{
             print("Username or password is empty")
             let alertController = UIAlertController(title: "Register Failed",
@@ -190,16 +208,6 @@ extension ViewControllerRegister {
             return false
         }
         
-        if userExists(username: username){
-            let alertController = UIAlertController(title: "Register Failed",
-                                                    message: "Username already exists!",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-            setUserIdBorderRed()
-            return false
-        }
         
         guard let reenteredPass = reenterPassTextField.text, !reenteredPass.isEmpty else {
             print("Please re-enter password")
