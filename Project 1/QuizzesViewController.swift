@@ -34,13 +34,13 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.collectionViewLayout = layout
         /*let leftInset = (collectionView.frame.width - 175) / 2 // Assuming item width is 175
         collectionView.contentInset = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: 0)*/
-        navigationController?.navigationBar.isHidden = false
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
         setMedals()
     }
 

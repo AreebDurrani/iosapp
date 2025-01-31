@@ -29,6 +29,7 @@ class QuizEndViewController: UIViewController {
         if let vc = storyboard.instantiateViewController(withIdentifier: "QuizzesViewController") as? QuizzesViewController {
             navigationController?.popToRootViewController(animated: true)
         }
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func setCongratsMsgConstraints(){
