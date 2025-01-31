@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class QuizEndViewController: UIViewController {
 
@@ -43,7 +44,18 @@ class QuizEndViewController: UIViewController {
         
         if score == 5 {
             congratsMessage.text = "Incredible!"
+            if UsernameManager.shared.currentQuiz == "painter" {
+                UsernameManager.shared.painterPerfect = true
+            }
+            else if UsernameManager.shared.currentQuiz == "mountain"{
+                UsernameManager.shared.mountainPerfect = true
+            }
+            else{
+                UsernameManager.shared.capitalPerfect = true
+            }
+            
             setImage("popper")
+            updateCoreDataAccount()
             
         } else if score < 5 && score >= 3 {
             congratsMessage.text = "Nice!"
@@ -77,5 +89,40 @@ class QuizEndViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseIn], animations: {
             self.resultImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }, completion: nil)
+    }
+}
+
+extension QuizEndViewController {
+    private func updateCoreDataAccount() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "username == [c] %@", UsernameManager.shared.username!)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let account = results.first {
+                let quizName = UsernameManager.shared.currentQuiz
+                if quizName == "painter"{
+                    print("in painter")
+                    account.painterPerfect = true
+                }
+                else if quizName == "mountain" {
+                    print("in mountain")
+                    account.mountainPerfect = true
+                }
+                else{
+                    print("in capital")
+                    account.capitalPerfect = true
+                }
+                
+                // Save the changes
+                try context.save()
+                print("Core Data account updated successfully")
+            }
+        } catch let error as NSError {
+            print("Error updating account: \(error), \(error.userInfo)")
+        }
     }
 }

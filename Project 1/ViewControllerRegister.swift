@@ -23,6 +23,10 @@ class ViewControllerRegister: UIViewController {
             saveAccount(username: username, password: password, fullname: fullNameTextField.text!, mobileNum: mobileNumberTextField.text!)
             //Store username into singleton for display
             UsernameManager.shared.userFullName = fullNameTextField.text!
+            UsernameManager.shared.username = username
+            UsernameManager.shared.mountainPerfect = false
+            UsernameManager.shared.capitalPerfect = false
+            UsernameManager.shared.painterPerfect = false
             print("User registered: \(username)")
             
             // Navigate to MainTabController
@@ -47,6 +51,9 @@ class ViewControllerRegister: UIViewController {
         account.setValue(password, forKey: "password")
         account.setValue(fullname, forKey: "fullname")
         account.setValue(mobileNum, forKey: "mobileNumber")
+        account.setValue(false, forKey: "mountainPerfect")
+        account.setValue(false, forKey: "painterPerfect")
+        account.setValue(false, forKey: "capitalPerfect")
         
         do {
             try context.save()
