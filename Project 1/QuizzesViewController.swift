@@ -9,6 +9,9 @@ import UIKit
 
 class QuizzesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var mountainsMedal: UIImageView!
+    @IBOutlet weak var capitalsMedal: UIImageView!
+    @IBOutlet weak var paintersMedal: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let images = ["everest", "paris", "monalisa"]
@@ -37,6 +40,8 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+        setMedals()
     }
 
     // MARK: - UICollectionViewDataSource
@@ -58,10 +63,13 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
         if let vc = storyboard.instantiateViewController(withIdentifier: "QuizQuestionViewController") as? QuizQuestionViewController {
             switch indexPath.row {
             case 0:
+                UsernameManager.shared.currentQuiz = "mountain"
                 vc.quiz = mountainQuiz
             case 1:
+                UsernameManager.shared.currentQuiz = "capital"
                 vc.quiz = capitalQuiz
             default:
+                UsernameManager.shared.currentQuiz = "painter"
                 vc.quiz = painterQuiz
             }
             navigationController?.pushViewController(vc, animated: true)
@@ -87,4 +95,29 @@ class QuizzesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
 }
 
+extension QuizzesViewController {
+    func setMedals(){
+        mountainsMedal.image = UIImage(named: "medal")
+        capitalsMedal.image = UIImage(named: "medal")
+        paintersMedal.image = UIImage(named: "medal")
+        // Set default alpha for all medals
+        [mountainsMedal, capitalsMedal, paintersMedal].forEach {
+            $0?.alpha = 0.2
+        }
+        
+        // Check achievements and set full alpha for unlocked ones
+        if UsernameManager.shared.mountainPerfect == true {
+            mountainsMedal.alpha = 1.0
+        }
+        
+        if UsernameManager.shared.capitalPerfect! == true {
+            capitalsMedal.alpha = 1.0
+        }
+        
+        if UsernameManager.shared.painterPerfect! == true {
+            paintersMedal.alpha = 1.0
+        }
+    }
+    
+}
 

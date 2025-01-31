@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24B83" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName=".Account" syncable="YES" codeGenerationType="class">
+        <attribute name="capitalPerfect" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="fullname" optional="YES" attributeType="String"/>
         <attribute name="mobileNumber" optional="YES" attributeType="String"/>
+        <attribute name="mountainPerfect" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="painterPerfect" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
