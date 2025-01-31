@@ -5,7 +5,9 @@
     {"title": "Triplanetary", "htmlURL": "https://standardebooks.org/ebooks/e-e-smith/triplanetary/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-e-smith_triplanetary-0ebe1f23-cover.avif"}
     ],
   "Fantasy": [
-      {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/walter-de-la-mare_the-return-854f0e05-cover.avif"}
+      {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/walter-de-la-mare_the-return-854f0e05-cover.avif"},
+      {"title": "The Well at the World's End", "htmlURL": "https://standardebooks.org/ebooks/william-morris/the-well-at-the-worlds-end/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/william-morris_the-well-at-the-worlds-end-3e80d1fc-cover.avif"},
+      {"title": "The Magic City", "htmlURL": "https://standardebooks.org/ebooks/e-nesbit/the-magic-city/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-nesbit_the-magic-city-a0917f63-cover.avif"}
   ]
 }
 
