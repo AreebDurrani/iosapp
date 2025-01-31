@@ -125,7 +125,7 @@ extension ViewControllerRegister {
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
         
         // Add a predicate to filter by username
-        fetchRequest.predicate = NSPredicate(format: "username == %@", username)
+        fetchRequest.predicate = NSPredicate(format: "username == [c] %@", username)
         
         do {
             let results = try context.fetch(fetchRequest)
@@ -178,6 +178,17 @@ extension ViewControllerRegister {
             return false
         }
         
+        if userExists(username: username){
+            let alertController = UIAlertController(title: "Register Failed",
+                                                    message: "Username already exists!",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            setUserIdBorderRed()
+            return false
+        }
+        
         guard let password = passwordTextField.text, !password.isEmpty else{
             print("Username or password is empty")
             let alertController = UIAlertController(title: "Register Failed",
@@ -190,16 +201,6 @@ extension ViewControllerRegister {
             return false
         }
         
-        if userExists(username: username){
-            let alertController = UIAlertController(title: "Register Failed",
-                                                    message: "Username already exists!",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-            setUserIdBorderRed()
-            return false
-        }
         
         guard let reenteredPass = reenterPassTextField.text, !reenteredPass.isEmpty else {
             print("Please re-enter password")

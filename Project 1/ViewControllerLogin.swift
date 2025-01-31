@@ -77,12 +77,13 @@ class ViewControllerLogin: UIViewController {
 
     private func validateLogin(username: String, password: String) -> Bool {
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "username == %@ AND password == %@", username, password)
-
+        // Add [c] for case-insensitive comparison on username
+        fetchRequest.predicate = NSPredicate(format: "username ==[c] %@ AND password == %@", username, password)
+        
         do {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let accounts = try context.fetch(fetchRequest)
-            if !accounts.isEmpty{
+            if !accounts.isEmpty {
                 UsernameManager.shared.userFullName = accounts[0].fullname!
             }
             return !accounts.isEmpty
