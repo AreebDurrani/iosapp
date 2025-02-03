@@ -30,8 +30,8 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
         setUpToolBarView()
         fetchTracks {
             DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+                self.collectionView.reloadData()
+            }
         }
         navigationItem.titleView = createUsernameLabel().customView
         setNavigationBarOpaque()

@@ -55,25 +55,24 @@ extension ViewControllerMusic2 {
     
     func nextSong(){
         guard let currentTrackIndex = currentTrackIndex else { return }
-        let nextItem = (currentTrackIndex.item + 1) % songsAndAudioFiles[currentTrackIndex.section].count
+        let nextItem = (currentTrackIndex.item + 1) % fetchedTracks.count // Updated to use fetchedTracks.count
         self.currentTrackIndex = (currentTrackIndex.section, nextItem)
-        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][nextItem].fileName
-        let previewURL = fetchedTracks[nextItem].previewURL
+        let previewURL = fetchedTracks[nextItem].previewURL // Correctly uses fetchedTracks
+        pauseButton.isHidden = false
+        playButton.isHidden = true
+        playAudio(withURL: previewURL)
+    }
+
+    func previousSong(){
+        guard let currentTrackIndex = currentTrackIndex else { return }
+        let previousItem = (currentTrackIndex.item - 1 + fetchedTracks.count) % fetchedTracks.count // Updated
+        self.currentTrackIndex = (currentTrackIndex.section, previousItem)
+        let previewURL = fetchedTracks[previousItem].previewURL // Correctly uses fetchedTracks
         pauseButton.isHidden = false
         playButton.isHidden = true
         playAudio(withURL: previewURL)
     }
     
-    func previousSong(){
-        guard let currentTrackIndex = currentTrackIndex else { return }
-        let previousItem = (currentTrackIndex.item - 1 + songsAndAudioFiles[currentTrackIndex.section].count) % songsAndAudioFiles[currentTrackIndex.section].count
-        self.currentTrackIndex = (currentTrackIndex.section, previousItem)
-        let audioFileName = songsAndAudioFiles[currentTrackIndex.section][previousItem].fileName
-        let previewURL = fetchedTracks[previousItem].previewURL
-        pauseButton.isHidden = false
-        playButton.isHidden = true
-        playAudio(withURL: previewURL)
-    }
     
     func switchLoop(_ sender: UIButton){
         if loopSong == true{
