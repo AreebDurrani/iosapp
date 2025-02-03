@@ -85,7 +85,17 @@ class ViewControllerLogin: UIViewController {
             let accounts = try context.fetch(fetchRequest)
             if !accounts.isEmpty {
                 UsernameManager.shared.username = accounts[0].username!
-                UsernameManager.shared.userFullName = accounts[0].fullname!
+                if let userFullName = accounts[0].fullname {
+                    UsernameManager.shared.userFullName = userFullName
+                } else {
+                    let alertController = UIAlertController(title: "Login Failed",
+                                                            message: "Account is too old. Please create a new one.",
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    return false
+                }
                 UsernameManager.shared.capitalPerfect = accounts[0].capitalPerfect
                 UsernameManager.shared.mountainPerfect = accounts[0].mountainPerfect
                 UsernameManager.shared.painterPerfect = accounts[0].painterPerfect
@@ -110,7 +120,14 @@ extension ViewControllerLogin {
         passwordTextField.frame.size.height = 40
         usernameTextField.layer.backgroundColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0).cgColor
     }
-    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        if let topController = UIApplication.shared.keyWindow?.rootViewController {
+            topController.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 //handle keychain remember me
