@@ -1386,6 +1386,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Logout">
                                     <color key="baseForegroundColor" name="greenbuttons"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="JUR-YH-wZs" kind="custom" identifier="logoutSegue" customClass="StoryboardSegueLogout" customModule="Project_1" customModuleProvider="target" id="6s5-cU-59J"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -1457,7 +1460,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0cm-U5-dJ6"/>
+        <segue reference="6s5-cU-59J"/>
         <segue reference="Che-OO-A0H"/>
     </inferredMetricsTieBreakers>
     <resources>
