@@ -7,7 +7,9 @@
   "Fantasy": [
       {"title": "The Return", "htmlURL": "https://standardebooks.org/ebooks/walter-de-la-mare/the-return/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/walter-de-la-mare_the-return-854f0e05-cover.avif"},
       {"title": "The Well at the World's End", "htmlURL": "https://standardebooks.org/ebooks/william-morris/the-well-at-the-worlds-end/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/william-morris_the-well-at-the-worlds-end-3e80d1fc-cover.avif"},
-      {"title": "The Magic City", "htmlURL": "https://standardebooks.org/ebooks/e-nesbit/the-magic-city/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-nesbit_the-magic-city-a0917f63-cover.avif"}
+      {"title": "The Magic City", "htmlURL": "https://standardebooks.org/ebooks/e-nesbit/the-magic-city/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-nesbit_the-magic-city-a0917f63-cover.avif"},
+      {"title": "Vathek", "htmlURL": "https://standardebooks.org/ebooks/william-beckford/vathek/samuel-henley/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/william-beckford_vathek_samuel-henley-be189343-cover.avif"},
+      {"title": "The Worm Ouroboros", "htmlURL": "https://standardebooks.org/ebooks/e-r-eddison/the-worm-ouroboros/text/titlepage", "coverURL": "https://standardebooks.org/images/covers/e-r-eddison_the-worm-ouroboros-ee4ab9c2-cover.avif" }
   ]
 }
 
