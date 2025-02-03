@@ -4,6 +4,7 @@ import CoreData
 class ViewControllerRegister: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor(named: "textColor")
         configureTextFields()
     }
 
