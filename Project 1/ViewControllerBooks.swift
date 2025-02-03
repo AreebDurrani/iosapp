@@ -211,16 +211,13 @@ class ViewControllerBooks: UIViewController,
     
     // MARK: - CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Identify the tapped book
         let selectedIndex = genreSegment.selectedSegmentIndex
         let selectedGenre = genres[selectedIndex]
         guard let booksArray = filteredBooksByGenre[selectedGenre] else { return }
         
         let book = booksArray[indexPath.row]
         
-        // Convert the book’s htmlURL (string) to a URL
         guard let url = URL(string: book.htmlURL) else {
-            // Show an alert if the URL is invalid
             let alert = UIAlertController(
                 title: "Invalid URL",
                 message: "Could not create a valid URL from: \(book.htmlURL)",
@@ -231,20 +228,15 @@ class ViewControllerBooks: UIViewController,
             return
         }
         
-        // Create a WKWebView
-        let webView = WKWebView(frame: .zero)
-        // Set this view controller as the navigation delegate
+        let webView = WKWebView()
         webView.navigationDelegate = self
-        
-        // Load the request
         webView.load(URLRequest(url: url))
         
-        // Create a view controller to display the webView
         let webViewController = UIViewController()
         webViewController.view.backgroundColor = .white
         webViewController.view.addSubview(webView)
+        webViewController.title = book.title  // Set the title of the new screen
         
-        // Auto-layout constraints to make the WKWebView fill the entire view
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             webView.leadingAnchor.constraint(equalTo: webViewController.view.leadingAnchor),
@@ -253,9 +245,10 @@ class ViewControllerBooks: UIViewController,
             webView.bottomAnchor.constraint(equalTo: webViewController.view.bottomAnchor)
         ])
         
-        // Present the web view controller modally (or push if you have a navigation stack)
-        present(webViewController, animated: true)
+        // Push the webViewController onto the navigation stack
+        navigationController?.pushViewController(webViewController, animated: true)
     }
+
     
 
     // MARK: - WKNavigationDelegate
