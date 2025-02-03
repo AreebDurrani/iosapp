@@ -24,7 +24,7 @@
                         <segue destination="zP3-lq-Umo" kind="relationship" relationship="viewControllers" id="Ryu-OR-0dT"/>
                         <segue destination="932-r4-awf" kind="relationship" relationship="viewControllers" id="fIl-AJ-icD"/>
                         <segue destination="4oP-79-Igm" kind="relationship" relationship="viewControllers" id="hc7-IH-vt4"/>
-                        <segue destination="Ij8-9u-StB" kind="relationship" relationship="viewControllers" id="LN5-IQ-uXJ"/>
+                        <segue destination="L3r-vl-GWM" kind="relationship" relationship="viewControllers" id="LN5-IQ-uXJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eam-gt-HkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1365,7 +1365,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-Of-Gcr">
-                                <rect key="frame" x="0.0" y="0.0" width="404" height="854"/>
+                                <rect key="frame" x="0.0" y="118" width="409" height="651"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -1377,14 +1377,25 @@
                         <viewLayoutGuide key="safeArea" id="fGE-qJ-Arm"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Google" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="uMH-w5-fbK"/>
+                    <navigationItem key="navigationItem" id="oxf-uF-FKQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="zhJ-y5-Udt">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WvB-d3-AkH">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout">
+                                    <color key="baseForegroundColor" name="greenbuttons"/>
+                                </buttonConfiguration>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="googleSearchView" destination="NVO-Of-Gcr" id="90Y-Xr-uEO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGo-Xa-tlx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267.93893129771" y="2387.323943661972"/>
+            <point key="canvasLocation" x="3180.9160305343512" y="2386.6197183098593"/>
         </scene>
         <!--Books-->
         <scene sceneID="WP9-XG-TtZ">
@@ -1425,6 +1436,25 @@
             </objects>
             <point key="canvasLocation" x="-318.32061068702291" y="1620.4225352112676"/>
         </scene>
+        <!--Google-->
+        <scene sceneID="M2i-Nc-U6C">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L3r-vl-GWM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Google" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="uMH-w5-fbK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qK0-uv-TWP">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ij8-9u-StB" kind="relationship" relationship="rootViewController" id="C1q-n0-Ero"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dto-cY-rUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2267.93893129771" y="2387.323943661972"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0cm-U5-dJ6"/>
@@ -1446,13 +1476,13 @@
         <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
         <namedColor name="BackgroundColor">
-            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="greenbuttons">
             <color red="0.14901960784313725" green="0.92549019607843142" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.1764705882352941" green="0.41568627450980389" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.17599999904632568" green="0.41600000858306885" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

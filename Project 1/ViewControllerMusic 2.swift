@@ -171,6 +171,7 @@ class ViewControllerMusic2: UIViewController, UICollectionViewDelegate, UICollec
 
     
     @IBAction func logoutPressed(_ sender: Any) {
+        stopSong()
         handleLogout()
     }
     
