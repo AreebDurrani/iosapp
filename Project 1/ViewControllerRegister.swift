@@ -175,9 +175,9 @@ extension ViewControllerRegister {
             return false
         }
         
-        if !username.hasSuffix("@gmail.com") {
+        guard isValidEmail(username) else {
             let alertController = UIAlertController(title: "Register Failed",
-                                                    message: "Username must be a valid email!",
+                                                    message: "Please enter a valid email address",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
@@ -248,4 +248,12 @@ extension ViewControllerRegister {
         return true
     }
     
+}
+
+extension ViewControllerRegister {
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
 }
