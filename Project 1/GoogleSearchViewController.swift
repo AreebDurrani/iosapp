@@ -14,6 +14,7 @@ class GoogleSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.titleView = createUsernameLabel().customView
         if let url = URL(string: "https://www.google.com") {
                 let request = URLRequest(url: url)
             googleSearchView.load(request)
